@@ -127,6 +127,17 @@ export default function AuthForm({ mode, onSuccess }: AuthFormProps) {
           </a>
         </p>
 
+        {mode === 'masuk' && (
+          <p className="text-center text-sm text-slate-500">
+            <a
+              href="/lupa-kata-sandi"
+              className="font-semibold text-blue-600 hover:text-blue-500"
+            >
+              Lupa kata sandi?
+            </a>
+          </p>
+        )}
+
         <p className="text-center text-xs text-slate-500">
           Simulasi SKD CPNS — gratis untuk komunitas
         </p>

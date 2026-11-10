@@ -17,6 +17,23 @@ export const auth = betterAuth({
   baseURL: process.env.BETTER_AUTH_URL!,
   emailAndPassword: {
     enabled: true,
+    // Nonaktifkan requirement verifikasi email untuk penggunaan development
+    // User dapat langsung login setelah daftar
+    requireEmailVerification: false,
+    // Reset password token expires in 1 hour
+    resetPasswordTokenExpiresIn: 3600,
+  },
+  // Konfigurasi email untuk reset password
+  // Untuk development, kita gunakan redirect ke frontend
+  email: {
+    // Send reset password email via redirect
+    sendResetPasswordEmail: async (params: { email: string; token: string; url: string }) => {
+      // Log URL reset untuk development
+      console.log('[PASSWORD RESET]', { email: params.email, url: params.url });
+      // Di production, kirim email melalui provider seperti nodemailer
+      // Untuk now, redirect langsung ke frontend dengan token
+      return { success: true };
+    },
   },
 });
 
