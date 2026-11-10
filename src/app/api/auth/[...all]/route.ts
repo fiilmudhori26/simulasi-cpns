@@ -23,16 +23,22 @@ export const auth = betterAuth({
     // Reset password token expires in 1 hour
     resetPasswordTokenExpiresIn: 3600,
   },
-  // Konfigurasi email untuk reset password
-  // Untuk development, kita gunakan redirect ke frontend
+  // Email plugin untuk development
   email: {
-    // Send reset password email via redirect
+    // Send email via console for development
+    sendEmail: async (params: { to: string; subject: string; body: string }) => {
+      console.log('[EMAIL]', params);
+      return true;
+    },
+    // Send reset password email - log URL untuk development
     sendResetPasswordEmail: async (params: { email: string; token: string; url: string }) => {
-      // Log URL reset untuk development
-      console.log('[PASSWORD RESET]', { email: params.email, url: params.url });
-      // Di production, kirim email melalui provider seperti nodemailer
-      // Untuk now, redirect langsung ke frontend dengan token
-      return { success: true };
+      console.log('[PASSWORD RESET]', params);
+      return true;
+    },
+    // Send sign up email - skip requirement since requireEmailVerification is false
+    sendSignUpEmail: async () => {
+      console.log('[SIGNUP EMAIL] - Skipped (email verification not required)');
+      return true;
     },
   },
 });
