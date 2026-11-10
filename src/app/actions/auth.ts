@@ -4,11 +4,11 @@ import { cookies } from 'next/headers';
 import { auth } from '@/app/api/auth/[...all]/route';
 
 type AuthApi = {
-  signInEmailPassword: (opts: {
-    body: { email: string; password: string };
+  signInEmail: (opts: {
+    body: { email: string; password: string; rememberMe?: boolean };
   }) => Promise<unknown>;
-  signUpEmailPassword: (opts: {
-    body: { email: string; password: string; name: string };
+  signUpEmail: (opts: {
+    body: { email: string; password: string; name: string; rememberMe?: boolean };
   }) => Promise<unknown>;
   signOut: (opts?: {
     headers: Record<string, string>;
@@ -26,7 +26,7 @@ export async function signIn(formData: FormData) {
   }
 
   try {
-    await api.signInEmailPassword({
+    await api.signInEmail({
       body: { email, password },
     });
     return { success: true };
@@ -45,12 +45,16 @@ export async function signUp(formData: FormData) {
   }
 
   try {
-    await api.signUpEmailPassword({
+    await api.signUpEmail({
       body: { email, password, name: namaTampil },
     });
     return { success: true };
-  } catch {
-    return { error: 'Gagal mendaftar. Email mungkin sudah terdaftar.' };
+  } catch (err: any) {
+    // Better Auth returns detailed error messages
+    if (err?.message?.includes('USER_ALREADY_EXISTS')) {
+      return { error: 'Email sudah terdaftar. Silakan gunakan email lain atau masuk.' };
+    }
+    return { error: 'Gagal mendaftar. Silakan coba lagi.' };
   }
 }
 
