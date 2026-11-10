@@ -4,7 +4,7 @@ import { db } from '@/db/index';
 import { attempts } from '@/db/schema';
 import { and, desc, eq, isNotNull } from 'drizzle-orm';
 import { getCurrentSession } from '@/lib/auth';
-import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
+import GrafikSkor from '@/app/(dashboard)/components/GrafikSkor';
 
 async function RiwayatPageBody() {
   const session = await getCurrentSession();
@@ -59,17 +59,7 @@ async function RiwayatPageBody() {
             Belum ada riwayat ujian. Mulai simulasi terlebih dahulu.
           </p>
         ) : (
-          <div className="h-64">
-            <ResponsiveContainer width="100%" height="100%">
-              <LineChart data={grafikData}>
-                <CartesianGrid strokeDasharray="3 3" stroke="#e5e7eb" />
-                <XAxis dataKey="waktu" />
-                <YAxis />
-                <Tooltip />
-                <Line type="monotone" dataKey="skor" stroke="#2563eb" strokeWidth={2} dot={false} />
-              </LineChart>
-            </ResponsiveContainer>
-          </div>
+          <GrafikSkor data={grafikData} />
         )}
       </div>
 
