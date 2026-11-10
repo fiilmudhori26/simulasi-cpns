@@ -1,0 +1,131 @@
+[
+  {
+    "kategori": "TWK",
+    "subkategori": "Sejarah Indonesia",
+    "teks_soal": "Siapa presiden pertama Republik Indonesia?",
+    "opsi": [
+      { "kode": "A", "teks": "Soekarno", "poin": 5 },
+      { "kode": "B", "teks": "Soeharto", "poin": 1 },
+      { "kode": "C", "teks": "B.J. Habibie", "poin": 1 },
+      { "kode": "D", "teks": "Megawati", "poin": 1 }
+    ],
+    "kunci": "A",
+    "pembahasan": "Soekarno adalah presiden pertama Republik Indonesia yang menjabat sejak 1945.",
+    "tingkat_kesulitan": 1
+  },
+  {
+    "kategori": "TWK",
+    "subkategori": "Konstitusi",
+    "teks_soal": "UUD 1945 telah diubah sebanyak berapa kali?",
+    "opsi": [
+      { "kode": "A", "teks": "2 kali", "poin": 1 },
+      { "kode": "B", "teks": "4 kali", "poin": 5 },
+      { "kode": "C", "teks": "5 kali", "poin": 1 },
+      { "kode": "D", "teks": "6 kali", "poin": 1 }
+    ],
+    "kunci": "B",
+    "pembahasan": "UUD 1945 telah diubah empat kali (1999, 2000, 2001, dan 2002).",
+    "tingkat_kesulitan": 2
+  },
+  {
+    "kategori": "TWK",
+    "subkategori": "Geografi",
+    "teks_soal": "Ibukota provinsi Papua adalah?",
+    "opsi": [
+      { "kode": "A", "teks": "Jayapura", "poin": 5 },
+      { "kode": "B", "teks": "Manokwari", "poin": 1 },
+      { "kode": "C", "teks": "Merauke", "poin": 1 },
+      { "kode": "D", "teks": "Sorong", "poin": 1 }
+    ],
+    "kunci": "A",
+    "pembahasan": "Ibukota provinsi Papua adalah Jayapura.",
+    "tingkat_kesulitan": 1
+  },
+  {
+    "kategori": "TIU",
+    "subkategori": "Ritme Ulang",
+    "teks_soal": "2, 6, 18, 54, ...?",
+    "opsi": [
+      { "kode": "A", "teks": "108", "poin": 1 },
+      { "kode": "B", "teks": "162", "poin": 5 },
+      { "kode": "C", "teks": "120", "poin": 1 },
+      { "kode": "D", "teks": "90", "poin": 1 }
+    ],
+    "kunci": "B",
+    "pembahasan": "Setiap angka dikalikan 3: 54 × 3 = 162.",
+    "tingkat_kesulitan": 2
+  },
+  {
+    "kategori": "TIU",
+    "subkategori": "Analogi",
+    "teks_soal": "Kucing : Kucingan :: Anjing : ?",
+    "opsi": [
+      { "kode": "A", "teks": "Anjungan", "poin": 5 },
+      { "kode": "B", "teks": "Kandang", "poin": 1 },
+      { "kode": "C", "teks": "Hewan", "poin": 1 },
+      { "kode": "D", "teks": "Asu", "poin": 1 }
+    ],
+    "kunci": "A",
+    "pembahasan": "Anjing yang sudah dewasa dinamakan anjungan (seperti kucing -> kucingan).",
+    "tingkat_kesulitan": 2
+  },
+  {
+    "kategori": "TIU",
+    "subkategori": "Pengantar Matematika",
+    "teks_soal": "15% dari 200 adalah?",
+    "opsi": [
+      { "kode": "A", "teks": "20", "poin": 1 },
+      { "kode": "B", "teks": "30", "poin": 5 },
+      { "kode": "C", "teks": "35", "poin": 1 },
+      { "kode": "D", "teks": "40", "poin": 1 }
+    ],
+    "kunci": "B",
+    "pembahasan": "15% × 200 = 0,15 × 200 = 30.",
+    "tingkat_kesulitan": 1
+  },
+  {
+    "kategori": "TKP",
+    "subkategori": "Mood",
+    "teks_soal": "Saya merasa tenang dalam situasi tekanan.",
+    "opsi": [
+      { "kode": "A", "teks": "Sangat tidak setuju", "poin": 1 },
+      { "kode": "B", "teks": "Tidak setuju", "poin": 2 },
+      { "kode": "C", "teks": "Netral", "poin": 3 },
+      { "kode": "D", "teks": "Setuju", "poin": 4 },
+      { "kode": "E", "teks": "Sangat setuju", "poin": 5 }
+    ],
+    "kunci": null,
+    "pembahasan": "Pernyataan kepribadian, tidak ada jawaban benar/salah. Poin sesuai pilihan.",
+    "tingkat_kesulitan": 1
+  },
+  {
+    "kategori": "TKP",
+    "subkategori": "Kecemasan",
+    "teks_soal": "Saya mudah khawatir tentang hal-hal kecil.",
+    "opsi": [
+      { "kode": "A", "teks": "Sangat tidak setuju", "poin": 5 },
+      { "kode": "B", "teks": "Tidak setuju", "poin": 4 },
+      { "kode": "C", "teks": "Netral", "poin": 3 },
+      { "kode": "D", "teks": "Setuju", "poin": 2 },
+      { "kode": "E", "teks": "Sangat setuju", "poin": 1 }
+    ],
+    "kunci": null,
+    "pembahasan": "Poin terbalik (reverse scored): semakin setuju, semakin rendah poin karena kecemasan tinggi tidak diinginkan.",
+    "tingkat_kesulitan": 2
+  },
+  {
+    "kategori": "TKP",
+    "subkategori": "Kepemimpinan",
+    "teks_soal": "Saya suka memimpin dalam kelompok.",
+    "opsi": [
+      { "kode": "A", "teks": "Sangat tidak setuju", "poin": 1 },
+      { "kode": "B", "teks": "Tidak setuju", "poin": 2 },
+      { "kode": "C", "teks": "Netral", "poin": 3 },
+      { "kode": "D", "teks": "Setuju", "poin": 4 },
+      { "kode": "E", "teks": "Sangat setuju", "poin": 5 }
+    ],
+    "kunci": null,
+    "pembahasan": "Pernyataan kepribadian, poin sesuai pilihan (1-5).",
+    "tingkat_kesulitan": 1
+  }
+]

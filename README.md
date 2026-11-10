@@ -1,36 +1,118 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Simulasi SKD CPNS
 
-## Getting Started
+Web aplikasi simulasi ujian CPNS (TWK, TIU, TKP) gratis untuk teman dan komunitas.
+Dibuat dengan Next.js (App Router), TypeScript, Tailwind CSS, Drizzle ORM, Neon Postgres,
+dan Better Auth. Tampilan mobile-first, seluruh teks antarmuka dalam Bahasa Indonesia.
 
-First, run the development server:
+## Stack
+
+- Next.js 16 (App Router) + TypeScript + Tailwind CSS
+- Neon Postgres (connection string via `DATABASE_URL`)
+- Drizzle ORM + drizzle-kit (migrasi)
+- @neondatabase/serverless (driver)
+- Better Auth (Auth email/sandi; adapter Drizzle)
+- Vercel (deploy target)
+- Recharts (grafik progres), Zod (validasi impor), Lucide (ikon)
+
+## Struktur Fitur (7 Fase)
+
+1. **Fondasi** — inisialisasi proyek, skema Drizzle, koneksi Neon.
+2. **Autentikasi** — daftar, masuk, keluar, proteksi route, profil singkat.
+3. **Mesin ujian** — mulai simulasi (penuh/kategori), timer akurat, auto-save jawaban,
+   penilaian server-side, passing grade konfigurasi.
+4. **Hasil dan pembahasan** — skor per sub-tes, status lulus, pembahasan tiap soal.
+5. **Riwayat dan leaderboard** — grafik progres skor (Recharts), top 50 leaderboard.
+6. **Impor soal dan admin** — skrip CLI impor JSON, halaman admin verifikasi/hapus draft.
+7. **Finishing** — loading/empty/error state, aksesibilitas dasar, README.
+
+## Langkah Setup
+
+### 1. Siapkan database Neon
+Buat project di [neon.tech](https://neon.tech) (atau via **Vercel Storage → Postgres**),
+ lalu ambil connection string (`DATABASE_URL`).
+
+### 2. Konfigurasi variabel lingkungan
+Salin contoh dan isi nilai asli:
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+cp .env.example .env
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Isi `.env`:
+- `DATABASE_URL` — connection string Neon Postgres (`?sslmode=require`)
+- `BETTER_AUTH_SECRET` — secret minimal 32 karakter (hasil `openssl rand -base64 32`)
+- `BETTER_AUTH_URL` — URL aplikasi (contoh: `http://localhost:3000`)
+- `NEXT_PUBLIC_ADMIN_EMAILS` — email admin, dipisahkan komma
+- `PASSING_GRADE_TWK`, `PASSING_GRADE_TIU`, `PASSING_GRADE_TKP` — nilai minimum lulus
+  (default: 65 / 80 / 166)
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### 3. Install dan jalankan secara lokal
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+npm install
+npm run db:generate   # generate migrasi Drizzle (perlu DATABASE_URL valid)
+npm run db:migrate    # terapkan migrasi ke Neon
+npm run dev
+```
 
-## Learn More
+Buka `http://localhost:3000`.
 
-To learn more about Next.js, take a look at the following resources:
+### 4. Impor soal contoh
+```bash
+npx tsx scripts/import-questions.ts contoh-soal.json
+```
+Soal akan masuk dengan status `draft`. Lalu verifikasi melalui halaman `/admin`
+(login sebagai admin terlebih dahulu).
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Untuk migrasi dari file ekspor Supabase (CSV/JSON):
+```bash
+npx tsx scripts/import-from-supabase-export.ts file-ekspor.json
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### 5. Buat akun admin
+- Daftar akun via `/daftar` dengan email yang tercantum di `NEXT_PUBLIC_ADMIN_EMAILS`.
+- Akses `/admin` untuk verifikasi soal draft.
 
-## Deploy on Vercel
+### 6. Deploy ke Vercel
+1. Push kode ke repository GitHub/GitLab.
+2. Import project di [vercel.com](https://vercel.com).
+3. Tambahkan semua variabel di `.env` ke **Project Settings → Environment Variables**.
+   Untuk database, gunakan **Vercel Storage → Postgres** dan ambil `DATABASE_URL`-nya,
+   atau isi manual connection string Neon.
+4. Jalankan `npx drizzle-kit migrate` (via Vercel CLI / local dengan `DATABASE_URL`
+   produksi) untuk membuat tabel, atau tambahkan sebagai step build.
+5. Deploy. Pastikan migrasi sudah dijalankan di database produksi.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Perintah Berguna
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+```bash
+npm run db:generate   # generate file migrasi dari skema
+npm run db:migrate    # terapkan migrasi ke database
+npm run db:studio     # buka Drizzle Studio (inspect data)
+npm run dev           # jalankan development server
+npm run build         # build produksi
+npm run start         # jalankan server produksi
+npm run lint          # pengecekan kode
+```
+
+## Asumsi (Keputusan Desain Sederhana)
+
+- `@neondatabase/serverless` + Drizzle ORM digantikan `@supabase/supabase-js`; RLS
+  tidak digunakan lagi, aturan akses diberlakukan di kode server (user hanya bisa
+  baca/tulis attempt dan jawabannya sendiri).
+- Soal yang dikirim ke peserta hanya yang berstatus `terverifikasi`; kunci jawaban dan
+  poin TIDAK dikirim ke klien selama ujian berlangsung. Penilaian dihitung di server.
+- `passing_grade_config` menyimpan satu baris (id=1) sebagai sumber kualitas passing
+  grade, dengan fallback ke env `PASSING_GRADE_*`.
+- Better Auth menyimpan `nama_tampil` di tabel `user` (mengganti tabel `profiles` lama);
+  email/password diaktifkan, Google Auth tidak digunakan (tidak ada di versi sebelumnya).
+- Tabel `account` dan `verification` disediakan untuk kebutuhan adapter Drizzle Better Auth,
+  meski hanya email/sandi yang digunakan.
+- Root dan halaman admin menggunakan Partial Prerender (Suspense) karena `dynamic`
+  config tidak kompatibel dengan `cacheComponents` di Next 16.
+- Soal ujian disimpan sebagai array ID (`attempts.soalIds`) agar survive refresh.
+- Leaderboard menampilkan hanya `nama_tampil` dan `skor_total` tertinggi per pengguna.
+
+## Lisensi
+
+Gratis untuk komunitas.
