@@ -1,0 +1,2082 @@
+{
+  "meta": {
+    "package": "paket-1",
+    "title": "Simulasi SKD CPNS - Paket 1 (Lengkap)",
+    "created": "2026-11-10",
+    "total_questions": 110,
+    "composition": {
+      "TWK": 30,
+      "TIU": 35,
+      "TKP": 45
+    },
+    "duration_minutes": 100,
+    "scoring": {
+      "TWK": {
+        "type": "single_answer",
+        "points_correct": 5,
+        "points_wrong": 0
+      },
+      "TIU": {
+        "type": "single_answer",
+        "points_correct": 5,
+        "points_wrong": 0
+      },
+      "TKP": {
+        "type": "graded_options",
+        "min_per_question": 1,
+        "max_per_question": 5
+      },
+      "max_score": {
+        "TWK": 150,
+        "TIU": 175,
+        "TKP": 225,
+        "total": 550
+      }
+    },
+    "passing_grade_reference": {
+      "TWK": 65,
+      "TIU": 80,
+      "TKP": 166,
+      "total": 311,
+      "note": "Acuan dari seleksi sebelumnya; verifikasi dengan pengumuman resmi CPNS 2026 (SSCASN/BKN) sebelum dipakai di web."
+    },
+    "schema_notes": "TWK dan TIU memakai field 'answer' (satu kunci benar). TKP memakai field 'scores' (nilai 1-5 per opsi, tidak ada satu kunci tunggal).",
+    "difficulty_distribution": {
+      "mudah": 30,
+      "sedang": 60,
+      "sulit": 20
+    }
+  },
+  "questions": [
+    {
+      "id": "twk-001",
+      "subtest": "TWK",
+      "topic": "pilar-negara",
+      "difficulty": "mudah",
+      "question": "Nilai dasar yang paling menonjol dalam sila keempat Pancasila adalah ...",
+      "options": {
+        "A": "Ketuhanan dan toleransi antarumat beragama",
+        "B": "Kemanusiaan yang adil dan beradab",
+        "C": "Musyawarah untuk mencapai mufakat",
+        "D": "Persatuan dan kesatuan bangsa",
+        "E": "Keadilan sosial bagi seluruh rakyat"
+      },
+      "answer": "C",
+      "explanation": "Sila keempat berbunyi \"Kerakyatan yang dipimpin oleh hikmat kebijaksanaan dalam permusyawaratan/perwakilan\", sehingga nilai yang menonjol adalah musyawarah untuk mencapai mufakat."
+    },
+    {
+      "id": "twk-002",
+      "subtest": "TWK",
+      "topic": "sejarah-kebangsaan",
+      "difficulty": "mudah",
+      "question": "Hari Lahir Pancasila diperingati setiap 1 Juni karena pada tanggal 1 Juni 1945 ...",
+      "options": {
+        "A": "PPKI mengesahkan Pancasila sebagai dasar negara",
+        "B": "Soekarno menyampaikan pidato tentang dasar negara yang dinamakan Pancasila dalam sidang BPUPKI",
+        "C": "Panitia Sembilan menandatangani Piagam Jakarta",
+        "D": "Proklamasi kemerdekaan Indonesia dibacakan",
+        "E": "Presiden mengeluarkan dekrit kembali ke UUD 1945"
+      },
+      "answer": "B",
+      "explanation": "Pada 1 Juni 1945, dalam sidang BPUPKI, Soekarno mengusulkan lima dasar negara dengan nama Pancasila. Tanggal ini ditetapkan sebagai Hari Lahir Pancasila melalui Keppres No. 24 Tahun 2016."
+    },
+    {
+      "id": "twk-003",
+      "subtest": "TWK",
+      "topic": "sejarah-kebangsaan",
+      "difficulty": "sedang",
+      "question": "Salah satu keputusan penting sidang pertama PPKI pada 18 Agustus 1945 adalah ...",
+      "options": {
+        "A": "membentuk Badan Keamanan Rakyat (BKR)",
+        "B": "membagi wilayah Indonesia menjadi 12 provinsi",
+        "C": "menetapkan sistem pemerintahan parlementer",
+        "D": "mengesahkan UUD 1945 dan memilih Soekarno-Hatta sebagai presiden dan wakil presiden",
+        "E": "menetapkan Sutan Sjahrir sebagai perdana menteri pertama"
+      },
+      "answer": "D",
+      "explanation": "Sidang PPKI 18 Agustus 1945 mengesahkan UUD 1945 serta memilih Soekarno sebagai presiden dan Mohammad Hatta sebagai wakil presiden. BKR dibentuk setelah sidang 22 Agustus 1945, dan sistem pemerintahan yang dianut adalah presidensial."
+    },
+    {
+      "id": "twk-004",
+      "subtest": "TWK",
+      "topic": "ketatanegaraan",
+      "difficulty": "mudah",
+      "question": "UUD 1945 telah diubah (diamandemen) dalam kurun waktu 1999–2002 sebanyak ... dan dilakukan oleh ...",
+      "options": {
+        "A": "empat kali, oleh Majelis Permusyawaratan Rakyat",
+        "B": "tiga kali, oleh Majelis Permusyawaratan Rakyat",
+        "C": "empat kali, oleh Dewan Perwakilan Rakyat",
+        "D": "lima kali, oleh Majelis Permusyawaratan Rakyat",
+        "E": "dua kali, oleh Presiden dan Dewan Perwakilan Rakyat"
+      },
+      "answer": "A",
+      "explanation": "Perubahan UUD 1945 dilakukan empat tahap (1999, 2000, 2001, 2002) oleh MPR sebagai lembaga yang berwenang mengubah UUD."
+    },
+    {
+      "id": "twk-005",
+      "subtest": "TWK",
+      "topic": "ketatanegaraan",
+      "difficulty": "sulit",
+      "question": "Pasal 1 ayat (2) UUD NRI 1945 hasil perubahan menyatakan bahwa kedaulatan berada di tangan rakyat dan ...",
+      "options": {
+        "A": "dilaksanakan sepenuhnya oleh MPR sebagai lembaga tertinggi negara",
+        "B": "dipegang oleh Presiden sebagai kepala negara",
+        "C": "dilaksanakan oleh DPR dan DPD",
+        "D": "diwakilkan kepada partai politik peserta pemilu",
+        "E": "dilaksanakan menurut Undang-Undang Dasar"
+      },
+      "answer": "E",
+      "explanation": "Sebelum perubahan, kedaulatan rakyat dilakukan sepenuhnya oleh MPR. Setelah perubahan, kedaulatan berada di tangan rakyat dan dilaksanakan menurut UUD, sehingga MPR tidak lagi menjadi lembaga tertinggi negara."
+    },
+    {
+      "id": "twk-006",
+      "subtest": "TWK",
+      "topic": "pilar-negara",
+      "difficulty": "mudah",
+      "question": "Semboyan Bhinneka Tunggal Ika pada lambang negara Garuda Pancasila diambil dari kitab Sutasoma karya ...",
+      "options": {
+        "A": "Mpu Prapanca",
+        "B": "Mpu Tantular",
+        "C": "Mpu Sindok",
+        "D": "Mpu Kanwa",
+        "E": "Mpu Gandring"
+      },
+      "answer": "B",
+      "explanation": "Kitab Sutasoma ditulis Mpu Tantular pada masa Majapahit. Pasal 36A UUD NRI 1945 menetapkan lambang negara ialah Garuda Pancasila dengan semboyan Bhinneka Tunggal Ika."
+    },
+    {
+      "id": "twk-007",
+      "subtest": "TWK",
+      "topic": "pilar-negara",
+      "difficulty": "sedang",
+      "question": "Pancasila berkedudukan sebagai sumber dari segala sumber hukum negara. Hal ini berarti ...",
+      "options": {
+        "A": "Pancasila hanya berlaku bagi para penyelenggara negara",
+        "B": "Pancasila dapat diubah melalui amandemen seperti pasal-pasal UUD",
+        "C": "seluruh peraturan perundang-undangan harus bersumber dari dan tidak bertentangan dengan nilai-nilai Pancasila",
+        "D": "Pancasila menggantikan UUD 1945 sebagai konstitusi tertulis",
+        "E": "Pancasila hanya menjadi pedoman moral dan tidak mengikat secara hukum"
+      },
+      "answer": "C",
+      "explanation": "Sebagai sumber segala sumber hukum, Pancasila menjadi dasar dan rujukan pembentukan seluruh peraturan perundang-undangan, sehingga tidak boleh ada peraturan yang bertentangan dengan nilai-nilainya."
+    },
+    {
+      "id": "twk-008",
+      "subtest": "TWK",
+      "topic": "ketatanegaraan",
+      "difficulty": "sulit",
+      "question": "Pasangan lembaga negara dan kewenangannya berikut yang tepat adalah ...",
+      "options": {
+        "A": "Mahkamah Konstitusi – menguji peraturan pemerintah terhadap undang-undang",
+        "B": "Mahkamah Agung – menguji undang-undang terhadap UUD 1945",
+        "C": "Komisi Yudisial – memutus pembubaran partai politik",
+        "D": "Mahkamah Agung – menguji peraturan perundang-undangan di bawah undang-undang terhadap undang-undang",
+        "E": "Badan Pemeriksa Keuangan – memutus perselisihan hasil pemilihan umum"
+      },
+      "answer": "D",
+      "explanation": "Mahkamah Agung menguji peraturan di bawah undang-undang terhadap undang-undang. Mahkamah Konstitusi menguji undang-undang terhadap UUD 1945, memutus pembubaran partai politik, dan memutus perselisihan hasil pemilu."
+    },
+    {
+      "id": "twk-009",
+      "subtest": "TWK",
+      "topic": "ketatanegaraan",
+      "difficulty": "mudah",
+      "question": "Gagasan pemisahan kekuasaan negara menjadi eksekutif, legislatif, dan yudikatif (trias politika) dikemukakan oleh ...",
+      "options": {
+        "A": "Montesquieu",
+        "B": "John Locke",
+        "C": "J.J. Rousseau",
+        "D": "Thomas Hobbes",
+        "E": "Plato"
+      },
+      "answer": "A",
+      "explanation": "Montesquieu merumuskan pemisahan kekuasaan menjadi eksekutif, legislatif, dan yudikatif. John Locke sebelumnya membagi kekuasaan menjadi legislatif, eksekutif, dan federatif."
+    },
+    {
+      "id": "twk-010",
+      "subtest": "TWK",
+      "topic": "ketatanegaraan",
+      "difficulty": "sedang",
+      "question": "Lembaga negara yang bertugas memeriksa pengelolaan dan tanggung jawab tentang keuangan negara menurut UUD NRI 1945 adalah ...",
+      "options": {
+        "A": "Bank Indonesia",
+        "B": "Badan Pemeriksa Keuangan",
+        "C": "Badan Pengawasan Keuangan dan Pembangunan",
+        "D": "Otoritas Jasa Keuangan",
+        "E": "Komisi Pemberantasan Korupsi"
+      },
+      "answer": "B",
+      "explanation": "Pasal 23E UUD NRI 1945 menyebutkan BPK sebagai lembaga yang bebas dan mandiri untuk memeriksa pengelolaan dan tanggung jawab keuangan negara. BPKP adalah pengawas internal pemerintah, bukan lembaga negara menurut UUD."
+    },
+    {
+      "id": "twk-011",
+      "subtest": "TWK",
+      "topic": "ketatanegaraan",
+      "difficulty": "mudah",
+      "question": "Asas pemilihan umum di Indonesia menurut Pasal 22E UUD NRI 1945 adalah ...",
+      "options": {
+        "A": "langsung, umum, bebas, terbuka, jujur, dan adil",
+        "B": "langsung, umum, bebas, rahasia, jujur, dan cepat",
+        "C": "langsung, merata, bebas, rahasia, jujur, dan adil",
+        "D": "umum, bebas, rahasia, terbuka, transparan, dan adil",
+        "E": "langsung, umum, bebas, rahasia, jujur, dan adil"
+      },
+      "answer": "E",
+      "explanation": "Pasal 22E ayat (1) menyatakan pemilihan umum dilaksanakan secara langsung, umum, bebas, rahasia, jujur, dan adil setiap lima tahun sekali (asas Luber Jurdil)."
+    },
+    {
+      "id": "twk-012",
+      "subtest": "TWK",
+      "topic": "ketatanegaraan",
+      "difficulty": "sulit",
+      "question": "Kewenangan Komisi Yudisial menurut Pasal 24B UUD NRI 1945 adalah ...",
+      "options": {
+        "A": "mengadili pelanggaran hak asasi manusia berat",
+        "B": "menguji undang-undang terhadap UUD",
+        "C": "mengusulkan pengangkatan hakim agung serta menjaga dan menegakkan kehormatan, keluhuran martabat, dan perilaku hakim",
+        "D": "memeriksa pengelolaan keuangan negara",
+        "E": "memutus sengketa kewenangan antarlembaga negara"
+      },
+      "answer": "C",
+      "explanation": "Pasal 24B ayat (1) memberi Komisi Yudisial wewenang mengusulkan pengangkatan hakim agung dan wewenang lain dalam rangka menjaga serta menegakkan kehormatan, keluhuran martabat, dan perilaku hakim."
+    },
+    {
+      "id": "twk-013",
+      "subtest": "TWK",
+      "topic": "sejarah-kebangsaan",
+      "difficulty": "mudah",
+      "question": "Butir ketiga ikrar Sumpah Pemuda 28 Oktober 1928 menyatakan bahwa pemuda-pemudi Indonesia menjunjung bahasa persatuan, yaitu ...",
+      "options": {
+        "A": "Bahasa Melayu Tinggi",
+        "B": "Bahasa Indonesia",
+        "C": "Bahasa Jawa",
+        "D": "Bahasa Belanda",
+        "E": "Bahasa daerah masing-masing"
+      },
+      "answer": "B",
+      "explanation": "Sumpah Pemuda hasil Kongres Pemuda II mengikrarkan satu tanah air, satu bangsa, dan menjunjung bahasa persatuan, bahasa Indonesia."
+    },
+    {
+      "id": "twk-014",
+      "subtest": "TWK",
+      "topic": "sejarah-kebangsaan",
+      "difficulty": "sedang",
+      "question": "Naskah proklamasi kemerdekaan Indonesia yang dibacakan pada 17 Agustus 1945 diketik oleh ...",
+      "options": {
+        "A": "Ir. Soekarno",
+        "B": "Drs. Mohammad Hatta",
+        "C": "Sayuti Melik",
+        "D": "Achmad Soebardjo",
+        "E": "Fatmawati"
+      },
+      "answer": "C",
+      "explanation": "Naskah proklamasi mula-mula ditulis tangan oleh Soekarno, kemudian diketik oleh Sayuti Melik."
+    },
+    {
+      "id": "twk-015",
+      "subtest": "TWK",
+      "topic": "sejarah-kebangsaan",
+      "difficulty": "sedang",
+      "question": "Pertempuran 10 November 1945 di Surabaya, yang kemudian diperingati sebagai Hari Pahlawan, dipicu oleh ...",
+      "options": {
+        "A": "ultimatum Inggris agar rakyat Surabaya menyerahkan senjata setelah tewasnya Brigjen A.W.S. Mallaby",
+        "B": "Agresi Militer Belanda II",
+        "C": "Perundingan Linggarjati",
+        "D": "Peristiwa Rengasdengklok",
+        "E": "Pemberontakan PKI di Madiun"
+      },
+      "answer": "A",
+      "explanation": "Setelah Brigjen Mallaby tewas pada akhir Oktober 1945, pihak Inggris mengeluarkan ultimatum agar rakyat dan pejuang menyerahkan senjata. Ultimatum ditolak dan pecah pertempuran 10 November 1945."
+    },
+    {
+      "id": "twk-016",
+      "subtest": "TWK",
+      "topic": "sejarah-kebangsaan",
+      "difficulty": "sulit",
+      "question": "Piagam Jakarta (22 Juni 1945) dirumuskan oleh Panitia Sembilan. Salah satu anggota Panitia Sembilan tersebut adalah ...",
+      "options": {
+        "A": "Sutan Sjahrir",
+        "B": "Tan Malaka",
+        "C": "Ki Hajar Dewantara",
+        "D": "K.R.T. Radjiman Wedyodiningrat",
+        "E": "K.H. A. Wahid Hasjim"
+      },
+      "answer": "E",
+      "explanation": "Anggota Panitia Sembilan: Soekarno, Mohammad Hatta, A.A. Maramis, Abikoesno Tjokrosoejoso, Abdul Kahar Muzakir, H. Agus Salim, Achmad Soebardjo, K.H. A. Wahid Hasjim, dan Muhammad Yamin."
+    },
+    {
+      "id": "twk-017",
+      "subtest": "TWK",
+      "topic": "bela-negara",
+      "difficulty": "sedang",
+      "question": "Landasan konstitusional bahwa setiap warga negara berhak dan wajib ikut serta dalam upaya pembelaan negara terdapat dalam ...",
+      "options": {
+        "A": "Pasal 28 ayat (1) UUD NRI 1945",
+        "B": "Pasal 30 ayat (3) UUD NRI 1945",
+        "C": "Pasal 31 ayat (1) UUD NRI 1945",
+        "D": "Pasal 27 ayat (3) UUD NRI 1945",
+        "E": "Pasal 33 ayat (2) UUD NRI 1945"
+      },
+      "answer": "D",
+      "explanation": "Pasal 27 ayat (3) menyatakan setiap warga negara berhak dan wajib ikut serta dalam upaya pembelaan negara. Pasal 30 ayat (1) mengatur hak dan kewajiban dalam usaha pertahanan dan keamanan negara."
+    },
+    {
+      "id": "twk-018",
+      "subtest": "TWK",
+      "topic": "bela-negara",
+      "difficulty": "sulit",
+      "question": "Menurut Pasal 30 ayat (2) UUD NRI 1945, dalam sistem pertahanan dan keamanan rakyat semesta, rakyat berkedudukan sebagai ...",
+      "options": {
+        "A": "kekuatan utama",
+        "B": "kekuatan pendukung",
+        "C": "pengawas jalannya pertahanan",
+        "D": "penasihat TNI dan Polri",
+        "E": "pelaksana tunggal pertahanan"
+      },
+      "answer": "B",
+      "explanation": "Pasal 30 ayat (2): usaha pertahanan dan keamanan dilaksanakan melalui sistem pertahanan dan keamanan rakyat semesta oleh TNI dan Polri sebagai kekuatan utama, dan rakyat sebagai kekuatan pendukung."
+    },
+    {
+      "id": "twk-019",
+      "subtest": "TWK",
+      "topic": "bela-negara",
+      "difficulty": "mudah",
+      "question": "Perilaku yang paling mencerminkan bela negara bagi seorang ASN dalam kehidupan sehari-hari adalah ...",
+      "options": {
+        "A": "melayani masyarakat dengan disiplin, jujur, dan penuh tanggung jawab sesuai tugasnya",
+        "B": "hanya berpartisipasi saat peringatan hari besar nasional",
+        "C": "mengutamakan kepentingan kelompok di atas kepentingan umum",
+        "D": "menyebarkan kritik terhadap kebijakan pemerintah tanpa data yang jelas",
+        "E": "menghindari kegiatan yang berkaitan dengan kenegaraan"
+      },
+      "answer": "A",
+      "explanation": "Bela negara tidak terbatas pada kegiatan militer. Menjalankan tugas dengan disiplin, jujur, dan bertanggung jawab merupakan wujud bela negara dalam kehidupan sehari-hari."
+    },
+    {
+      "id": "twk-020",
+      "subtest": "TWK",
+      "topic": "nasionalisme",
+      "difficulty": "sedang",
+      "question": "Sikap yang paling mencerminkan nasionalisme di era globalisasi adalah ...",
+      "options": {
+        "A": "menolak seluruh budaya dan produk dari luar negeri",
+        "B": "mengikuti budaya asing sepenuhnya agar dianggap modern",
+        "C": "memanfaatkan kemajuan global sambil tetap menjaga dan mengembangkan budaya serta produk dalam negeri",
+        "D": "tidak peduli terhadap perkembangan bangsa lain maupun bangsa sendiri",
+        "E": "hanya bangga terhadap bangsa sendiri tanpa mau belajar dari bangsa lain"
+      },
+      "answer": "C",
+      "explanation": "Nasionalisme yang sehat bersifat terbuka terhadap kemajuan dunia, tetapi tetap melestarikan dan mengembangkan jati diri serta kepentingan bangsa."
+    },
+    {
+      "id": "twk-021",
+      "subtest": "TWK",
+      "topic": "integritas",
+      "difficulty": "sedang",
+      "question": "Seorang ASN diminta atasannya membuat laporan perjalanan dinas fiktif agar anggaran dapat dicairkan. Sikap yang paling mencerminkan integritas adalah ...",
+      "options": {
+        "A": "membuat laporan tersebut karena perintah atasan",
+        "B": "membuat laporan, lalu menyimpan bukti sebagai jaga-jaga",
+        "C": "berpura-pura sakit agar tidak perlu mengerjakannya",
+        "D": "membuat laporan dan meminta imbalan atas pekerjaan tambahan",
+        "E": "menolak dengan sopan dengan menjelaskan konsekuensi hukumnya, dan melaporkan melalui mekanisme yang tersedia bila tetap dipaksa"
+      },
+      "answer": "E",
+      "explanation": "Integritas berarti konsisten bertindak sesuai nilai dan aturan meski ada tekanan. Perintah yang melanggar hukum tidak boleh dituruti, dan pelanggaran dapat dilaporkan melalui mekanisme pelaporan yang tersedia."
+    },
+    {
+      "id": "twk-022",
+      "subtest": "TWK",
+      "topic": "integritas",
+      "difficulty": "sedang",
+      "question": "Berikut ini yang BUKAN termasuk sembilan nilai antikorupsi yang dikembangkan KPK adalah ...",
+      "options": {
+        "A": "Jujur",
+        "B": "Mandiri",
+        "C": "Peduli",
+        "D": "Kompetitif",
+        "E": "Berani"
+      },
+      "answer": "D",
+      "explanation": "Sembilan nilai antikorupsi KPK: jujur, peduli, mandiri, disiplin, tanggung jawab, kerja keras, sederhana, berani, dan adil. Kompetitif tidak termasuk."
+    },
+    {
+      "id": "twk-023",
+      "subtest": "TWK",
+      "topic": "anti-radikalisme",
+      "difficulty": "sedang",
+      "question": "Di grup WhatsApp kantor, seorang rekan membagikan pesan berisi ujaran kebencian terhadap kelompok agama tertentu. Sikap ASN yang paling tepat adalah ...",
+      "options": {
+        "A": "mengingatkan secara santun bahwa pesan tersebut tidak pantas, dan melaporkannya kepada admin atau atasan bila terulang",
+        "B": "mengabaikannya karena itu urusan pribadi rekan tersebut",
+        "C": "membalas dengan pesan serupa agar rekan tersebut jera",
+        "D": "keluar dari grup tanpa menyampaikan apa pun",
+        "E": "ikut meneruskan pesan agar lebih banyak orang tahu"
+      },
+      "answer": "A",
+      "explanation": "ASN berperan sebagai perekat dan pemersatu bangsa. Ujaran kebencian perlu disikapi dengan mengingatkan secara santun dan memanfaatkan jalur pelaporan, bukan dibiarkan atau dibalas dengan cara yang sama."
+    },
+    {
+      "id": "twk-024",
+      "subtest": "TWK",
+      "topic": "teknologi-informasi",
+      "difficulty": "sedang",
+      "question": "Anda menerima pesan berantai yang menyatakan akan ada kebijakan baru tentang tunjangan pegawai, tetapi tanpa sumber resmi. Langkah yang paling tepat adalah ...",
+      "options": {
+        "A": "meneruskannya ke grup agar rekan lain segera tahu",
+        "B": "memeriksa kebenarannya melalui situs atau kanal resmi instansi terkait sebelum menyebarkannya",
+        "C": "menanyakannya kepada teman yang mungkin tahu",
+        "D": "mengabaikannya tanpa pernah memeriksa kebenarannya",
+        "E": "menambahkan komentar pribadi lalu membagikannya di media sosial"
+      },
+      "answer": "B",
+      "explanation": "Informasi tanpa sumber jelas berpotensi hoaks. Verifikasi melalui kanal resmi adalah langkah yang bertanggung jawab sebelum informasi disebarkan."
+    },
+    {
+      "id": "twk-025",
+      "subtest": "TWK",
+      "topic": "profesionalisme",
+      "difficulty": "sedang",
+      "question": "Berikut ini yang BUKAN termasuk nilai dasar ASN BerAKHLAK adalah ...",
+      "options": {
+        "A": "Akuntabel",
+        "B": "Harmonis",
+        "C": "Loyal",
+        "D": "Kolaboratif",
+        "E": "Inovatif"
+      },
+      "answer": "E",
+      "explanation": "BerAKHLAK: Berorientasi Pelayanan, Akuntabel, Kompeten, Harmonis, Loyal, Adaptif, dan Kolaboratif. Inovatif tidak termasuk."
+    },
+    {
+      "id": "twk-026",
+      "subtest": "TWK",
+      "topic": "profesionalisme",
+      "difficulty": "mudah",
+      "question": "Berdasarkan Undang-Undang Nomor 20 Tahun 2023 tentang Aparatur Sipil Negara, Pegawai ASN terdiri atas ...",
+      "options": {
+        "A": "PNS dan pegawai honorer",
+        "B": "PNS, TNI, dan Polri",
+        "C": "PNS dan PPPK",
+        "D": "PPPK dan tenaga kontrak",
+        "E": "PNS, PPPK, dan tenaga honorer"
+      },
+      "answer": "C",
+      "explanation": "Pegawai ASN terdiri atas Pegawai Negeri Sipil (PNS) dan Pegawai Pemerintah dengan Perjanjian Kerja (PPPK)."
+    },
+    {
+      "id": "twk-027",
+      "subtest": "TWK",
+      "topic": "bahasa-indonesia",
+      "difficulty": "sedang",
+      "question": "Kalimat yang efektif adalah ...",
+      "options": {
+        "A": "Para tamu-tamu undangan dipersilakan memasuki ruangan.",
+        "B": "Harga cabai naik ke atas pada akhir pekan.",
+        "C": "Agar supaya lulus ujian, ia belajar setiap malam.",
+        "D": "Panitia menyiapkan konsumsi bagi seluruh peserta rapat.",
+        "E": "Tujuan pelatihan ini adalah merupakan peningkatan kompetensi pegawai."
+      },
+      "answer": "D",
+      "explanation": "Pilihan A memakai bentuk jamak ganda (para ... -tamu), B pleonasme (naik ke atas), C pleonasme (agar supaya), E memakai dua predikat (adalah merupakan). Kalimat D ringkas dan tidak berlebihan."
+    },
+    {
+      "id": "twk-028",
+      "subtest": "TWK",
+      "topic": "bahasa-indonesia",
+      "difficulty": "mudah",
+      "question": "Kelompok kata yang seluruhnya baku adalah ...",
+      "options": {
+        "A": "resiko, izin, apotek",
+        "B": "risiko, izin, apotek",
+        "C": "risiko, ijin, apotek",
+        "D": "risiko, izin, apotik",
+        "E": "resiko, ijin, apotik"
+      },
+      "answer": "B",
+      "explanation": "Bentuk baku: risiko, izin, apotek. Bentuk tidak baku: resiko, ijin, apotik."
+    },
+    {
+      "id": "twk-029",
+      "subtest": "TWK",
+      "topic": "bahasa-indonesia",
+      "difficulty": "sedang",
+      "question": "Bacalah paragraf berikut!\n\nTransformasi digital dalam layanan publik memberikan banyak kemudahan bagi masyarakat. Pengurusan dokumen yang dahulu memerlukan waktu berhari-hari kini dapat diselesaikan secara daring dalam hitungan jam. Selain itu, masyarakat tidak perlu lagi datang ke kantor sehingga biaya transportasi dapat dihemat. Layanan daring juga mengurangi peluang terjadinya pungutan liar karena prosesnya tercatat dalam sistem.\n\nIde pokok paragraf tersebut adalah ...",
+      "options": {
+        "A": "Transformasi digital layanan publik memberikan banyak kemudahan bagi masyarakat.",
+        "B": "Layanan daring mengurangi peluang terjadinya pungutan liar.",
+        "C": "Pengurusan dokumen secara daring dapat selesai dalam hitungan jam.",
+        "D": "Masyarakat tidak perlu lagi datang ke kantor pelayanan.",
+        "E": "Biaya transportasi masyarakat dapat dihemat."
+      },
+      "answer": "A",
+      "explanation": "Kalimat pertama merupakan kalimat utama yang memuat ide pokok. Kalimat-kalimat lainnya adalah penjelasan berupa contoh-contoh kemudahan."
+    },
+    {
+      "id": "twk-030",
+      "subtest": "TWK",
+      "topic": "bahasa-indonesia",
+      "difficulty": "sedang",
+      "question": "Bacalah paragraf berikut!\n\nSetiap pagi, petugas loket membuka layanan tepat waktu. Antrean dilayani secara berurutan tanpa membeda-bedakan. Petugas menjelaskan persyaratan dengan ramah dan sabar. Berbagai hal tersebut menunjukkan bahwa kantor kelurahan itu memberikan pelayanan yang prima.\n\nParagraf tersebut termasuk paragraf ...",
+      "options": {
+        "A": "deduktif",
+        "B": "campuran",
+        "C": "induktif",
+        "D": "ineratif",
+        "E": "naratif"
+      },
+      "answer": "C",
+      "explanation": "Kalimat utama berada di akhir paragraf, didahului penjelasan berupa fakta-fakta khusus. Paragraf seperti ini disebut paragraf induktif."
+    },
+    {
+      "id": "tiu-001",
+      "subtest": "TIU",
+      "topic": "sinonim",
+      "difficulty": "mudah",
+      "question": "Sinonim kata KONTEMPORER adalah ...",
+      "options": {
+        "A": "kuno",
+        "B": "klasik",
+        "C": "tradisional",
+        "D": "sezaman",
+        "E": "terdahulu"
+      },
+      "answer": "D",
+      "explanation": "Kontemporer berarti pada waktu yang sama atau masa kini; sinonimnya sezaman."
+    },
+    {
+      "id": "tiu-002",
+      "subtest": "TIU",
+      "topic": "sinonim",
+      "difficulty": "sedang",
+      "question": "Sinonim kata MITIGASI adalah ...",
+      "options": {
+        "A": "pemicu bencana",
+        "B": "penanganan korban",
+        "C": "pengurangan dampak",
+        "D": "peramalan cuaca",
+        "E": "pembangunan kembali"
+      },
+      "answer": "C",
+      "explanation": "Mitigasi adalah upaya mengurangi risiko atau dampak, misalnya dampak bencana."
+    },
+    {
+      "id": "tiu-003",
+      "subtest": "TIU",
+      "topic": "sinonim",
+      "difficulty": "sedang",
+      "question": "Sinonim kata HAKIKAT adalah ...",
+      "options": {
+        "A": "pinggiran",
+        "B": "bentuk",
+        "C": "akibat",
+        "D": "inti",
+        "E": "kebiasaan"
+      },
+      "answer": "D",
+      "explanation": "Hakikat berarti inti atau dasar sesuatu."
+    },
+    {
+      "id": "tiu-004",
+      "subtest": "TIU",
+      "topic": "antonim",
+      "difficulty": "sedang",
+      "question": "Antonim kata EKSPLISIT adalah ...",
+      "options": {
+        "A": "terang",
+        "B": "jelas",
+        "C": "nyata",
+        "D": "gamblang",
+        "E": "tersirat"
+      },
+      "answer": "E",
+      "explanation": "Eksplisit berarti dinyatakan secara jelas; lawannya implisit atau tersirat."
+    },
+    {
+      "id": "tiu-005",
+      "subtest": "TIU",
+      "topic": "antonim",
+      "difficulty": "mudah",
+      "question": "Antonim kata KONSISTEN adalah ...",
+      "options": {
+        "A": "teguh",
+        "B": "taat asas",
+        "C": "berubah-ubah",
+        "D": "setia",
+        "E": "tetap"
+      },
+      "answer": "C",
+      "explanation": "Konsisten berarti tetap dan taat asas; lawannya berubah-ubah."
+    },
+    {
+      "id": "tiu-006",
+      "subtest": "TIU",
+      "topic": "analogi",
+      "difficulty": "mudah",
+      "question": "TERMOMETER : SUHU = BAROMETER : ...",
+      "options": {
+        "A": "kelembapan",
+        "B": "kecepatan angin",
+        "C": "curah hujan",
+        "D": "arah angin",
+        "E": "tekanan udara"
+      },
+      "answer": "E",
+      "explanation": "Termometer adalah alat ukur suhu; barometer adalah alat ukur tekanan udara."
+    },
+    {
+      "id": "tiu-007",
+      "subtest": "TIU",
+      "topic": "analogi",
+      "difficulty": "sedang",
+      "question": "PADI : BERAS = GANDUM : ...",
+      "options": {
+        "A": "roti",
+        "B": "jagung",
+        "C": "tepung",
+        "D": "sawah",
+        "E": "nasi"
+      },
+      "answer": "C",
+      "explanation": "Padi diolah menjadi beras; gandum diolah menjadi tepung."
+    },
+    {
+      "id": "tiu-008",
+      "subtest": "TIU",
+      "topic": "analogi",
+      "difficulty": "sulit",
+      "question": "DOKTER : DIAGNOSIS = HAKIM : ...",
+      "options": {
+        "A": "pengadilan",
+        "B": "jaksa",
+        "C": "putusan",
+        "D": "hukuman",
+        "E": "saksi"
+      },
+      "answer": "C",
+      "explanation": "Dokter menyimpulkan keadaan pasien dalam diagnosis; hakim menyimpulkan perkara dalam putusan."
+    },
+    {
+      "id": "tiu-009",
+      "subtest": "TIU",
+      "topic": "silogisme",
+      "difficulty": "sedang",
+      "question": "Premis 1: Semua ASN wajib bersikap netral dalam politik.\nPremis 2: Sebagian ASN bekerja di dinas pendidikan.\nKesimpulan yang tepat adalah ...",
+      "options": {
+        "A": "Sebagian yang bekerja di dinas pendidikan wajib bersikap netral dalam politik",
+        "B": "Semua yang bekerja di dinas pendidikan adalah ASN",
+        "C": "Tidak ada ASN dinas pendidikan yang wajib netral",
+        "D": "Semua ASN bekerja di dinas pendidikan",
+        "E": "Sebagian ASN tidak wajib bersikap netral"
+      },
+      "answer": "A",
+      "explanation": "Karena semua ASN wajib netral, sebagian ASN yang bekerja di dinas pendidikan juga wajib netral."
+    },
+    {
+      "id": "tiu-010",
+      "subtest": "TIU",
+      "topic": "silogisme",
+      "difficulty": "sedang",
+      "question": "Premis 1: Semua pegawai yang disiplin mendapat penghargaan.\nPremis 2: Budi tidak mendapat penghargaan.\nKesimpulan yang tepat adalah ...",
+      "options": {
+        "A": "Budi pegawai yang disiplin",
+        "B": "Budi bukan pegawai yang disiplin",
+        "C": "Budi pegawai yang malas",
+        "D": "Semua pegawai tidak mendapat penghargaan",
+        "E": "Budi mungkin pegawai yang disiplin"
+      },
+      "answer": "B",
+      "explanation": "Kontraposisi: jika disiplin maka mendapat penghargaan; tidak mendapat penghargaan berarti tidak disiplin."
+    },
+    {
+      "id": "tiu-011",
+      "subtest": "TIU",
+      "topic": "logika",
+      "difficulty": "sedang",
+      "question": "Premis 1: Jika hujan deras, maka jalan banjir.\nPremis 2: Jalan tidak banjir.\nKesimpulan yang tepat adalah ...",
+      "options": {
+        "A": "Hujan deras",
+        "B": "Jalan banjir karena hujan",
+        "C": "Hujan tidak turun",
+        "D": "Hujan tidak deras",
+        "E": "Mungkin hujan deras"
+      },
+      "answer": "D",
+      "explanation": "Modus tollens: jika P maka Q, tidak Q, maka tidak P."
+    },
+    {
+      "id": "tiu-012",
+      "subtest": "TIU",
+      "topic": "penalaran-analitis",
+      "difficulty": "sulit",
+      "question": "Lima pegawai (Andi, Budi, Citra, Dedi, dan Eka) duduk berjajar dari kiri ke kanan dalam satu baris. Citra duduk di ujung kiri. Dedi duduk tepat di sebelah kanan Citra. Andi duduk di ujung kanan. Budi duduk tepat di sebelah kiri Andi. Siapa yang duduk di tengah?",
+      "options": {
+        "A": "Dedi",
+        "B": "Eka",
+        "C": "Budi",
+        "D": "Andi",
+        "E": "Citra"
+      },
+      "answer": "B",
+      "explanation": "Urutan dari kiri: Citra, Dedi, Eka, Budi, Andi. Yang duduk di tengah adalah Eka."
+    },
+    {
+      "id": "tiu-013",
+      "subtest": "TIU",
+      "topic": "penalaran-analitis",
+      "difficulty": "sedang",
+      "question": "A lebih tinggi daripada B. B lebih tinggi daripada C. D lebih pendek daripada C. E lebih tinggi daripada A. Pernyataan yang pasti benar adalah ...",
+      "options": {
+        "A": "E lebih tinggi daripada D",
+        "B": "B lebih pendek daripada D",
+        "C": "C lebih tinggi daripada A",
+        "D": "A lebih pendek daripada C",
+        "E": "D lebih tinggi daripada B"
+      },
+      "answer": "A",
+      "explanation": "Urutan tinggi: E > A > B > C > D, sehingga E pasti lebih tinggi daripada D."
+    },
+    {
+      "id": "tiu-014",
+      "subtest": "TIU",
+      "topic": "penalaran-analitis",
+      "difficulty": "sulit",
+      "question": "Gelas di pantry pecah dan pelakunya adalah salah satu dari tiga pegawai: A, B, atau C. Pernyataan mereka: A: \"Bukan saya pelakunya.\" B: \"C pelakunya.\" C: \"B berbohong.\" Jika hanya satu pernyataan yang benar, siapa pelakunya?",
+      "options": {
+        "A": "A",
+        "B": "B",
+        "C": "C",
+        "D": "A atau B",
+        "E": "Tidak dapat ditentukan"
+      },
+      "answer": "A",
+      "explanation": "Jika pelaku A, hanya pernyataan C yang benar. Jika pelaku B atau C, ada dua pernyataan yang benar. Maka pelakunya A."
+    },
+    {
+      "id": "tiu-015",
+      "subtest": "TIU",
+      "topic": "penalaran-analitis",
+      "difficulty": "mudah",
+      "question": "Jika tiga hari yang lalu adalah hari Kamis, maka empat hari lagi dari hari ini adalah hari ...",
+      "options": {
+        "A": "Senin",
+        "B": "Kamis",
+        "C": "Selasa",
+        "D": "Rabu",
+        "E": "Jumat"
+      },
+      "answer": "B",
+      "explanation": "Tiga hari lalu Kamis berarti hari ini Minggu; empat hari lagi adalah Kamis."
+    },
+    {
+      "id": "tiu-016",
+      "subtest": "TIU",
+      "topic": "penalaran-analitis",
+      "difficulty": "sulit",
+      "question": "Tentukan huruf berikutnya: A, C, F, J, O, ...",
+      "options": {
+        "A": "S",
+        "B": "T",
+        "C": "V",
+        "D": "W",
+        "E": "U"
+      },
+      "answer": "E",
+      "explanation": "Selisih urutan huruf bertambah: +2, +3, +4, +5, lalu +6. Huruf ke-15 (O) ditambah 6 menjadi huruf ke-21, yaitu U."
+    },
+    {
+      "id": "tiu-017",
+      "subtest": "TIU",
+      "topic": "deret-angka",
+      "difficulty": "sedang",
+      "question": "Tentukan angka berikutnya: 2, 5, 11, 23, 47, ...",
+      "options": {
+        "A": "93",
+        "B": "94",
+        "C": "95",
+        "D": "96",
+        "E": "98"
+      },
+      "answer": "C",
+      "explanation": "Pola ×2 + 1: 47 × 2 + 1 = 95."
+    },
+    {
+      "id": "tiu-018",
+      "subtest": "TIU",
+      "topic": "deret-angka",
+      "difficulty": "sedang",
+      "question": "Tentukan angka berikutnya: 5, 7, 11, 17, 25, ...",
+      "options": {
+        "A": "33",
+        "B": "34",
+        "C": "35",
+        "D": "36",
+        "E": "37"
+      },
+      "answer": "C",
+      "explanation": "Selisih bertambah 2: +2, +4, +6, +8, +10; 25 + 10 = 35."
+    },
+    {
+      "id": "tiu-019",
+      "subtest": "TIU",
+      "topic": "deret-angka",
+      "difficulty": "sulit",
+      "question": "Tentukan angka berikutnya: 2, 3, 4, 6, 6, 12, 8, 24, 10, ...",
+      "options": {
+        "A": "12",
+        "B": "36",
+        "C": "40",
+        "D": "48",
+        "E": "60"
+      },
+      "answer": "D",
+      "explanation": "Suku ganjil: 2, 4, 6, 8, 10 (naik 2). Suku genap: 3, 6, 12, 24, 48 (dikali 2). Suku ke-10 adalah 48."
+    },
+    {
+      "id": "tiu-020",
+      "subtest": "TIU",
+      "topic": "deret-angka",
+      "difficulty": "sedang",
+      "question": "Tentukan angka berikutnya: 100, 95, 85, 70, 50, ...",
+      "options": {
+        "A": "20",
+        "B": "25",
+        "C": "30",
+        "D": "35",
+        "E": "40"
+      },
+      "answer": "B",
+      "explanation": "Selisih turun 5, 10, 15, 20, lalu 25; 50 − 25 = 25."
+    },
+    {
+      "id": "tiu-021",
+      "subtest": "TIU",
+      "topic": "aritmetika",
+      "difficulty": "sedang",
+      "question": "Hasil dari 3/4 + 5/6 − 1/3 adalah ...",
+      "options": {
+        "A": "1",
+        "B": "7/6",
+        "C": "5/4",
+        "D": "4/3",
+        "E": "3/2"
+      },
+      "answer": "C",
+      "explanation": "3/4 + 5/6 − 1/3 = 9/12 + 10/12 − 4/12 = 15/12 = 5/4."
+    },
+    {
+      "id": "tiu-022",
+      "subtest": "TIU",
+      "topic": "aritmetika",
+      "difficulty": "mudah",
+      "question": "Hasil dari (36 × 25) ÷ 15 + 18 adalah ...",
+      "options": {
+        "A": "60",
+        "B": "68",
+        "C": "78",
+        "D": "88",
+        "E": "98"
+      },
+      "answer": "C",
+      "explanation": "36 × 25 = 900; 900 ÷ 15 = 60; 60 + 18 = 78."
+    },
+    {
+      "id": "tiu-023",
+      "subtest": "TIU",
+      "topic": "aritmetika",
+      "difficulty": "mudah",
+      "question": "Hasil dari 2^5 + 3^3 − 4^2 adalah ...",
+      "options": {
+        "A": "41",
+        "B": "43",
+        "C": "45",
+        "D": "48",
+        "E": "59"
+      },
+      "answer": "B",
+      "explanation": "32 + 27 − 16 = 43."
+    },
+    {
+      "id": "tiu-024",
+      "subtest": "TIU",
+      "topic": "soal-cerita",
+      "difficulty": "sedang",
+      "question": "Tiga lampu isyarat berkedip masing-masing setiap 12 detik, 18 detik, dan 30 detik. Pada pukul 08.00.00 ketiganya berkedip bersamaan. Ketiganya akan berkedip bersamaan lagi pada pukul ...",
+      "options": {
+        "A": "08.01.30",
+        "B": "08.02.00",
+        "C": "08.02.30",
+        "D": "08.03.00",
+        "E": "08.06.00"
+      },
+      "answer": "D",
+      "explanation": "KPK dari 12, 18, dan 30 adalah 180 detik = 3 menit, sehingga bersamaan lagi pukul 08.03.00."
+    },
+    {
+      "id": "tiu-025",
+      "subtest": "TIU",
+      "topic": "soal-cerita",
+      "difficulty": "sulit",
+      "question": "Usia ayah empat kali usia anaknya. Lima tahun lagi, usia ayah tiga kali usia anaknya. Usia anak sekarang adalah ...",
+      "options": {
+        "A": "5 tahun",
+        "B": "8 tahun",
+        "C": "10 tahun",
+        "D": "12 tahun",
+        "E": "15 tahun"
+      },
+      "answer": "C",
+      "explanation": "Misal usia anak x: 4x + 5 = 3(x + 5), maka x = 10."
+    },
+    {
+      "id": "tiu-026",
+      "subtest": "TIU",
+      "topic": "soal-cerita",
+      "difficulty": "sedang",
+      "question": "Rina dapat menyelesaikan suatu pekerjaan dalam 12 hari, sedangkan Sinta dalam 6 hari. Jika keduanya bekerja bersama, pekerjaan selesai dalam ...",
+      "options": {
+        "A": "3 hari",
+        "B": "4 hari",
+        "C": "5 hari",
+        "D": "6 hari",
+        "E": "9 hari"
+      },
+      "answer": "B",
+      "explanation": "Per hari: 1/12 + 1/6 = 3/12 = 1/4, sehingga selesai dalam 4 hari."
+    },
+    {
+      "id": "tiu-027",
+      "subtest": "TIU",
+      "topic": "soal-cerita",
+      "difficulty": "sedang",
+      "question": "Sebuah barang berharga Rp500.000 mendapat diskon 20%, kemudian diskon tambahan 10% dari harga setelah diskon pertama. Harga yang dibayar adalah ...",
+      "options": {
+        "A": "Rp350.000",
+        "B": "Rp360.000",
+        "C": "Rp370.000",
+        "D": "Rp375.000",
+        "E": "Rp400.000"
+      },
+      "answer": "B",
+      "explanation": "500.000 × 0,8 = 400.000; 400.000 × 0,9 = 360.000."
+    },
+    {
+      "id": "tiu-028",
+      "subtest": "TIU",
+      "topic": "soal-cerita",
+      "difficulty": "sedang",
+      "question": "Rata-rata nilai ujian 5 siswa adalah 80. Setelah satu siswa baru bergabung, rata-rata menjadi 82. Nilai siswa baru tersebut adalah ...",
+      "options": {
+        "A": "82",
+        "B": "86",
+        "C": "88",
+        "D": "90",
+        "E": "92"
+      },
+      "answer": "E",
+      "explanation": "Total awal 5 × 80 = 400; total baru 6 × 82 = 492; nilai siswa baru = 492 − 400 = 92."
+    },
+    {
+      "id": "tiu-029",
+      "subtest": "TIU",
+      "topic": "perbandingan",
+      "difficulty": "mudah",
+      "question": "Perbandingan jumlah kelereng Ani dan Budi adalah 3 : 5. Jika jumlah kelereng mereka 64, selisih kelereng mereka adalah ...",
+      "options": {
+        "A": "8",
+        "B": "12",
+        "C": "16",
+        "D": "20",
+        "E": "24"
+      },
+      "answer": "C",
+      "explanation": "Jumlah bagian 3 + 5 = 8, tiap bagian 64 ÷ 8 = 8; selisih 2 bagian = 16."
+    },
+    {
+      "id": "tiu-030",
+      "subtest": "TIU",
+      "topic": "persentase",
+      "difficulty": "sedang",
+      "question": "Gaji sebesar Rp4.000.000 naik 15%, kemudian dipotong pajak 5% dari gaji setelah kenaikan. Gaji bersih yang diterima adalah ...",
+      "options": {
+        "A": "Rp4.200.000",
+        "B": "Rp4.370.000",
+        "C": "Rp4.380.000",
+        "D": "Rp4.400.000",
+        "E": "Rp4.600.000"
+      },
+      "answer": "B",
+      "explanation": "4.000.000 × 1,15 = 4.600.000; 4.600.000 × 0,95 = 4.370.000."
+    },
+    {
+      "id": "tiu-031",
+      "subtest": "TIU",
+      "topic": "persentase",
+      "difficulty": "sedang",
+      "question": "Sebuah sepeda dijual dengan kerugian 10% seharga Rp450.000. Harga beli sepeda tersebut adalah ...",
+      "options": {
+        "A": "Rp405.000",
+        "B": "Rp450.000",
+        "C": "Rp495.000",
+        "D": "Rp500.000",
+        "E": "Rp550.000"
+      },
+      "answer": "D",
+      "explanation": "Harga jual = 90% dari harga beli, sehingga harga beli = 450.000 ÷ 0,9 = 500.000."
+    },
+    {
+      "id": "tiu-032",
+      "subtest": "TIU",
+      "topic": "kecepatan-jarak",
+      "difficulty": "mudah",
+      "question": "Sebuah mobil menempuh jarak 240 km dengan kecepatan rata-rata 80 km/jam. Jika berangkat pukul 07.30, mobil tiba pukul ...",
+      "options": {
+        "A": "10.00",
+        "B": "10.30",
+        "C": "10.45",
+        "D": "11.00",
+        "E": "11.30"
+      },
+      "answer": "B",
+      "explanation": "Waktu tempuh = 240 ÷ 80 = 3 jam; 07.30 + 3 jam = 10.30."
+    },
+    {
+      "id": "tiu-033",
+      "subtest": "TIU",
+      "topic": "kecepatan-jarak",
+      "difficulty": "sedang",
+      "question": "Dua kendaraan berangkat bersamaan dari dua kota yang berjarak 300 km dan saling berlawanan arah dengan kecepatan 60 km/jam dan 90 km/jam. Keduanya bertemu setelah ...",
+      "options": {
+        "A": "1,5 jam",
+        "B": "2 jam",
+        "C": "2,5 jam",
+        "D": "3 jam",
+        "E": "5 jam"
+      },
+      "answer": "B",
+      "explanation": "Kecepatan gabungan 150 km/jam; waktu bertemu = 300 ÷ 150 = 2 jam."
+    },
+    {
+      "id": "tiu-034",
+      "subtest": "TIU",
+      "topic": "tabel-data",
+      "difficulty": "sedang",
+      "question": "Data penjualan (unit): Januari 120, Februari 150, Maret 90, April 140. Rata-rata penjualan per bulan adalah ...",
+      "options": {
+        "A": "120",
+        "B": "122,5",
+        "C": "125",
+        "D": "130",
+        "E": "135"
+      },
+      "answer": "C",
+      "explanation": "(120 + 150 + 90 + 140) ÷ 4 = 500 ÷ 4 = 125."
+    },
+    {
+      "id": "tiu-035",
+      "subtest": "TIU",
+      "topic": "tabel-data",
+      "difficulty": "sedang",
+      "question": "Data penjualan (unit): Januari 120, Februari 150, Maret 90, April 140. Persentase penurunan penjualan dari Februari ke Maret adalah ...",
+      "options": {
+        "A": "25%",
+        "B": "30%",
+        "C": "33,3%",
+        "D": "40%",
+        "E": "60%"
+      },
+      "answer": "D",
+      "explanation": "Penurunan = (150 − 90) ÷ 150 × 100% = 40%."
+    },
+    {
+      "id": "tkp-001",
+      "subtest": "TKP",
+      "topic": "pelayanan-publik",
+      "difficulty": "mudah",
+      "question": "Sepuluh menit sebelum loket tutup, seorang pemohon datang membawa berkas yang belum lengkap, sementara antrean masih ada. Sikap Anda adalah ...",
+      "options": {
+        "A": "melayani pemohon, menjelaskan dengan ramah kekurangan berkasnya, dan memberi tahu cara melengkapinya agar tidak perlu mengulang dari awal",
+        "B": "menyampaikan bahwa loket akan tutup dan meminta pemohon kembali besok tanpa penjelasan",
+        "C": "mengarahkan pemohon bertanya kepada petugas informasi",
+        "D": "melayani pemohon dan menyarankan melengkapi berkas pada hari berikutnya",
+        "E": "menolak berkas dan menutup loket tepat waktu tanpa melayani"
+      },
+      "scores": {
+        "A": 5,
+        "B": 2,
+        "C": 3,
+        "D": 4,
+        "E": 1
+      },
+      "explanation": "Pelayanan publik yang baik berorientasi pada kebutuhan masyarakat: melayani sampai tuntas, memberi informasi jelas, dan membantu agar pemohon tidak bolak-balik."
+    },
+    {
+      "id": "tkp-002",
+      "subtest": "TKP",
+      "topic": "pelayanan-publik",
+      "difficulty": "sedang",
+      "question": "Seorang warga marah-marah karena layanan di kantor Anda dirasa lambat. Sikap Anda adalah ...",
+      "options": {
+        "A": "mengabaikan warga tersebut sampai emosinya reda",
+        "B": "meminta warga tenang dan tidak membuat keributan di kantor",
+        "C": "mendengarkan keluhannya dengan tenang, meminta maaf atas ketidaknyamanan, menjelaskan penyebab dan perkiraan waktu, serta membantu mempercepat sesuai prosedur",
+        "D": "mengarahkan warga untuk menemui atasan",
+        "E": "menjelaskan penyebab keterlambatan dengan tenang dan meminta warga menunggu"
+      },
+      "scores": {
+        "A": 1,
+        "B": 2,
+        "C": 5,
+        "D": 3,
+        "E": 4
+      },
+      "explanation": "Empati, penjelasan yang jelas, dan solusi dalam batas prosedur adalah inti pelayanan prima; mengabaikan atau menyuruh diam memperburuk situasi."
+    },
+    {
+      "id": "tkp-003",
+      "subtest": "TKP",
+      "topic": "pelayanan-publik",
+      "difficulty": "mudah",
+      "question": "Seorang lansia kesulitan menaiki tangga menuju loket layanan di lantai dua kantor Anda. Sikap Anda adalah ...",
+      "options": {
+        "A": "menyatakan loket memang berada di lantai dua dan tidak dapat diubah",
+        "B": "membantu dan memprioritaskan pelayanannya, lalu mengusulkan kepada pimpinan penyediaan layanan di lantai dasar bagi kelompok rentan",
+        "C": "menyarankan lansia datang bersama keluarga pada kesempatan berikutnya",
+        "D": "membantu dan mendahulukan pelayanannya",
+        "E": "meminta lansia mengantre seperti pemohon lain agar adil"
+      },
+      "scores": {
+        "A": 1,
+        "B": 5,
+        "C": 3,
+        "D": 4,
+        "E": 2
+      },
+      "explanation": "Pelayanan publik harus inklusif; selain membantu langsung, usulan perbaikan fasilitas menunjukkan inisiatif jangka panjang."
+    },
+    {
+      "id": "tkp-004",
+      "subtest": "TKP",
+      "topic": "pelayanan-publik",
+      "difficulty": "sulit",
+      "question": "Anda menyadari bahwa SOP layanan di unit Anda belum diperbarui sehingga sering membingungkan pemohon. Sikap Anda adalah ...",
+      "options": {
+        "A": "mengeluhkan pembuat SOP kepada rekan kerja",
+        "B": "membiarkannya karena menganggap hal itu bukan wewenang Anda",
+        "C": "menjelaskan kepada pemohon sebisanya tanpa melaporkan",
+        "D": "melaporkan masalah tersebut kepada atasan dan menunggu keputusan",
+        "E": "mencatat kendala yang terjadi, mengusulkan perbaikan SOP kepada atasan disertai contoh kasus, dan sementara itu menjelaskan alur yang benar kepada pemohon"
+      },
+      "scores": {
+        "A": 2,
+        "B": 1,
+        "C": 3,
+        "D": 4,
+        "E": 5
+      },
+      "explanation": "Sikap terbaik menggabungkan solusi sementara bagi pemohon dengan usulan perbaikan berbasis data kepada pihak yang berwenang."
+    },
+    {
+      "id": "tkp-005",
+      "subtest": "TKP",
+      "topic": "pelayanan-publik",
+      "difficulty": "mudah",
+      "question": "Setelah dilayani, seorang pemohon menyodorkan sejumlah uang sebagai tanda terima kasih. Sikap Anda adalah ...",
+      "options": {
+        "A": "menolak tegas dan meminta pemohon segera pergi",
+        "B": "menolak dengan sopan sambil menjelaskan bahwa layanan telah diatur sesuai ketentuan dan tidak boleh menerima imbalan",
+        "C": "menerima dan menyimpannya karena diberikan dengan ikhlas",
+        "D": "menerima agar pemohon tidak tersinggung, lalu menyerahkannya kepada atasan",
+        "E": "meminta jumlah yang lebih besar"
+      },
+      "scores": {
+        "A": 4,
+        "B": 5,
+        "C": 2,
+        "D": 3,
+        "E": 1
+      },
+      "explanation": "ASN dilarang menerima imbalan di luar ketentuan. Penolakan yang sopan dan disertai penjelasan menjaga integritas sekaligus hubungan baik dengan masyarakat."
+    },
+    {
+      "id": "tkp-006",
+      "subtest": "TKP",
+      "topic": "pelayanan-publik",
+      "difficulty": "sedang",
+      "question": "Sistem layanan daring di kantor Anda mengalami gangguan saat banyak pemohon sedang menunggu. Sikap Anda adalah ...",
+      "options": {
+        "A": "menutup layanan sampai sistem normal",
+        "B": "melaporkan gangguan kepada tim teknis dan meminta pemohon menunggu",
+        "C": "menyarankan pemohon kembali pada hari lain",
+        "D": "menginformasikan gangguan kepada pemohon, membuka layanan manual sementara sesuai prosedur, dan melaporkannya kepada tim teknis",
+        "E": "menunggu sistem pulih tanpa menyampaikan informasi apa pun"
+      },
+      "scores": {
+        "A": 1,
+        "B": 4,
+        "C": 3,
+        "D": 5,
+        "E": 2
+      },
+      "explanation": "Layanan tidak boleh terhenti total; informasi yang transparan dan alternatif layanan sementara menjaga kepercayaan masyarakat."
+    },
+    {
+      "id": "tkp-007",
+      "subtest": "TKP",
+      "topic": "pelayanan-publik",
+      "difficulty": "sedang",
+      "question": "Seorang pemohon menanyakan hal yang berada di luar bidang tugas Anda. Sikap Anda adalah ...",
+      "options": {
+        "A": "menjelaskan bahwa hal itu di luar bidang Anda, lalu mengantarkan atau mengarahkan pemohon ke petugas yang tepat dan memastikan ia terlayani",
+        "B": "menjawab sebisanya berdasarkan pengetahuan Anda",
+        "C": "menyatakan itu bukan urusan Anda",
+        "D": "menjawab asal agar pemohon segera pergi",
+        "E": "menunjukkan unit yang menangani pertanyaan tersebut"
+      },
+      "scores": {
+        "A": 5,
+        "B": 3,
+        "C": 1,
+        "D": 2,
+        "E": 4
+      },
+      "explanation": "Pelayanan yang baik memastikan pemohon sampai pada petugas yang tepat, bukan sekadar melepas tanggung jawab."
+    },
+    {
+      "id": "tkp-008",
+      "subtest": "TKP",
+      "topic": "pelayanan-publik",
+      "difficulty": "sulit",
+      "question": "Seorang warga mengunggah keluhan di media sosial tentang lambatnya layanan kantor Anda. Sikap Anda adalah ...",
+      "options": {
+        "A": "membalas dengan nada keras untuk membela kantor",
+        "B": "meminta warga tersebut menghapus unggahannya",
+        "C": "membiarkannya karena bukan tugas Anda menanggapi media sosial",
+        "D": "menanggapi secara sopan, meminta data untuk menelusuri masalahnya, menyampaikan permohonan maaf, serta melaporkannya kepada atasan untuk perbaikan",
+        "E": "melaporkan keluhan tersebut kepada atasan"
+      },
+      "scores": {
+        "A": 2,
+        "B": 1,
+        "C": 3,
+        "D": 5,
+        "E": 4
+      },
+      "explanation": "Keluhan publik adalah masukan untuk perbaikan layanan; tanggapan santun dan tindak lanjut internal lebih tepat daripada membela diri atau membungkam."
+    },
+    {
+      "id": "tkp-009",
+      "subtest": "TKP",
+      "topic": "pelayanan-publik",
+      "difficulty": "sedang",
+      "question": "Berkas seorang pemohon tertunda karena pejabat penandatangan sedang cuti, padahal pemohon membutuhkannya segera. Sikap Anda adalah ...",
+      "options": {
+        "A": "menjelaskan situasi kepada pemohon, berkoordinasi dengan pejabat pengganti agar berkas diproses, dan mengabari perkembangannya",
+        "B": "menyuruh pemohon menghubungi sendiri pejabat yang sedang cuti",
+        "C": "menyatakan bahwa sistem tidak memungkinkan berkas diproses",
+        "D": "menyampaikan bahwa berkas akan diproses setelah pejabat kembali bertugas",
+        "E": "meminta pemohon menunggu tanpa kepastian waktu"
+      },
+      "scores": {
+        "A": 5,
+        "B": 1,
+        "C": 2,
+        "D": 4,
+        "E": 3
+      },
+      "explanation": "Mencari solusi melalui pendelegasian wewenang sesuai aturan menunjukkan orientasi pelayanan dan tanggung jawab."
+    },
+    {
+      "id": "tkp-010",
+      "subtest": "TKP",
+      "topic": "pelayanan-publik",
+      "difficulty": "mudah",
+      "question": "Seorang pemohon beberapa kali salah mengisi formulir layanan. Sikap Anda adalah ...",
+      "options": {
+        "A": "memandu pengisian dengan sabar, memberi contoh, dan memastikan pemohon memahami",
+        "B": "memberikan contoh formulir terisi agar ditiru sendiri",
+        "C": "menegur pemohon karena tidak membaca petunjuk",
+        "D": "menjelaskan sekali lagi lalu meminta pemohon mencoba kembali",
+        "E": "meminta pemohon bertanya kepada orang lain"
+      },
+      "scores": {
+        "A": 5,
+        "B": 3,
+        "C": 1,
+        "D": 4,
+        "E": 2
+      },
+      "explanation": "Kesabaran dan pendampingan membuat layanan mudah diakses semua kalangan."
+    },
+    {
+      "id": "tkp-011",
+      "subtest": "TKP",
+      "topic": "jejaring-kerja",
+      "difficulty": "sedang",
+      "question": "Anda membutuhkan data dari unit lain untuk menyelesaikan laporan, tetapi unit tersebut lambat merespons. Sikap Anda adalah ...",
+      "options": {
+        "A": "mencari data dari sumber yang tidak resmi",
+        "B": "menghubungi unit tersebut secara sopan, menjelaskan tenggat dan kegunaan data, menawarkan bantuan, dan memberi tahu atasan bila belum ada kemajuan",
+        "C": "mengeluh tentang unit tersebut kepada rekan-rekan lain",
+        "D": "menunggu sampai unit tersebut mengirimkan data",
+        "E": "menghubungi unit tersebut berulang kali hingga data diberikan"
+      },
+      "scores": {
+        "A": 2,
+        "B": 5,
+        "C": 1,
+        "D": 3,
+        "E": 4
+      },
+      "explanation": "Komunikasi proaktif, jelas, dan sopan, disertai eskalasi yang wajar, membangun kerja sama lintas unit."
+    },
+    {
+      "id": "tkp-012",
+      "subtest": "TKP",
+      "topic": "jejaring-kerja",
+      "difficulty": "sulit",
+      "question": "Dua rekan satu tim Anda berselisih sehingga pekerjaan tim terganggu. Sikap Anda adalah ...",
+      "options": {
+        "A": "mengajak keduanya berbicara baik-baik, membantu mencari titik temu, dan melibatkan atasan bila perlu",
+        "B": "mendekati masing-masing secara pribadi untuk menenangkan mereka",
+        "C": "memihak salah satu rekan yang menurut Anda benar",
+        "D": "tetap fokus pada pekerjaan Anda sendiri",
+        "E": "melaporkan perselisihan itu kepada atasan tanpa mencoba menengahi"
+      },
+      "scores": {
+        "A": 5,
+        "B": 4,
+        "C": 1,
+        "D": 3,
+        "E": 2
+      },
+      "explanation": "Menengahi secara netral demi kepentingan tim lebih baik daripada membiarkan atau memihak."
+    },
+    {
+      "id": "tkp-013",
+      "subtest": "TKP",
+      "topic": "jejaring-kerja",
+      "difficulty": "sedang",
+      "question": "Anda ditugaskan bekerja sama dengan instansi lain yang memiliki prosedur kerja berbeda dengan instansi Anda. Sikap Anda adalah ...",
+      "options": {
+        "A": "mengerjakan bagian Anda sesuai prosedur sendiri tanpa koordinasi",
+        "B": "menyesuaikan diri sepenuhnya dengan prosedur mereka",
+        "C": "menolak penugasan karena merepotkan",
+        "D": "menunggu arahan atasan tentang mekanisme kerja sama",
+        "E": "mempelajari prosedur mereka, mendiskusikan persamaan dan perbedaan, lalu menyepakati mekanisme kerja bersama"
+      },
+      "scores": {
+        "A": 2,
+        "B": 4,
+        "C": 1,
+        "D": 3,
+        "E": 5
+      },
+      "explanation": "Kolaborasi efektif lahir dari saling memahami dan menyepakati mekanisme bersama."
+    },
+    {
+      "id": "tkp-014",
+      "subtest": "TKP",
+      "topic": "jejaring-kerja",
+      "difficulty": "sedang",
+      "question": "Dalam rapat lintas unit, usulan Anda ditolak oleh mayoritas peserta. Sikap Anda adalah ...",
+      "options": {
+        "A": "tetap mempertahankan usulan dengan argumen tanpa mendengarkan masukan",
+        "B": "diam dan tidak lagi berkontribusi dalam rapat",
+        "C": "menyalahkan peserta rapat yang menolak",
+        "D": "menanyakan alasan penolakan, menerima masukan, memperbaiki usulan, dan mencari titik temu",
+        "E": "menerima keputusan rapat dengan lapang dada"
+      },
+      "scores": {
+        "A": 3,
+        "B": 2,
+        "C": 1,
+        "D": 5,
+        "E": 4
+      },
+      "explanation": "Terbuka terhadap masukan dan berorientasi pada solusi bersama adalah ciri kolaborasi yang baik."
+    },
+    {
+      "id": "tkp-015",
+      "subtest": "TKP",
+      "topic": "jejaring-kerja",
+      "difficulty": "mudah",
+      "question": "Seorang anggota baru di tim Anda tampak kesulitan beradaptasi. Sikap Anda adalah ...",
+      "options": {
+        "A": "menunggu ia menyesuaikan diri sendiri",
+        "B": "membiarkannya karena Anda dulu juga mengalami hal yang sama",
+        "C": "memperkenalkan alur kerja, mengajaknya berinteraksi dengan tim, dan bersedia menjadi tempat bertanya",
+        "D": "memberikan panduan tertulis tentang alur kerja",
+        "E": "menyuruhnya bertanya apabila membutuhkan bantuan"
+      },
+      "scores": {
+        "A": 2,
+        "B": 1,
+        "C": 5,
+        "D": 4,
+        "E": 3
+      },
+      "explanation": "Membantu anggota baru secara aktif mempercepat adaptasi dan memperkuat tim."
+    },
+    {
+      "id": "tkp-016",
+      "subtest": "TKP",
+      "topic": "jejaring-kerja",
+      "difficulty": "sedang",
+      "question": "Seorang rekan meminta bantuan saat Anda sedang menyelesaikan pekerjaan yang mendesak. Sikap Anda adalah ...",
+      "options": {
+        "A": "membantu sebentar lalu kembali ke pekerjaan Anda",
+        "B": "menolak karena itu bukan tugas Anda",
+        "C": "menjelaskan kondisi Anda, menyelesaikan pekerjaan mendesak terlebih dahulu, lalu membantu pada waktu yang disepakati",
+        "D": "menolak dengan halus tanpa menawarkan alternatif",
+        "E": "mengabaikan permintaan rekan tersebut"
+      },
+      "scores": {
+        "A": 4,
+        "B": 2,
+        "C": 5,
+        "D": 3,
+        "E": 1
+      },
+      "explanation": "Mengatur prioritas sambil tetap menawarkan bantuan menjaga tanggung jawab sekaligus hubungan kerja."
+    },
+    {
+      "id": "tkp-017",
+      "subtest": "TKP",
+      "topic": "jejaring-kerja",
+      "difficulty": "sedang",
+      "question": "Anda mengetahui informasi penting di unit Anda yang sebenarnya berguna bagi unit lain. Sikap Anda adalah ...",
+      "options": {
+        "A": "menganggapnya bukan urusan Anda",
+        "B": "menyimpannya sampai ada yang menanyakan",
+        "C": "menyampaikannya kepada unit terkait dan atasan agar dapat dikoordinasikan",
+        "D": "memanfaatkan informasi itu untuk keuntungan pribadi",
+        "E": "menyampaikannya kepada rekan dekat di unit tersebut"
+      },
+      "scores": {
+        "A": 2,
+        "B": 3,
+        "C": 5,
+        "D": 1,
+        "E": 4
+      },
+      "explanation": "Berbagi informasi secara terkoordinasi mendukung sinergi antarunit."
+    },
+    {
+      "id": "tkp-018",
+      "subtest": "TKP",
+      "topic": "sosial-budaya",
+      "difficulty": "mudah",
+      "question": "Rekan kerja Anda yang berbeda agama merayakan hari besar keagamaannya. Sikap Anda adalah ...",
+      "options": {
+        "A": "tidak peduli dengan perayaan tersebut",
+        "B": "menyindir perayaan tersebut",
+        "C": "menyampaikan ucapan yang baik, menghormati, dan membantu menyesuaikan pembagian tugas agar ia dapat merayakannya dengan tenang",
+        "D": "bersikap biasa saja",
+        "E": "menyampaikan ucapan yang baik dan menghormati perayaan tersebut"
+      },
+      "scores": {
+        "A": 2,
+        "B": 1,
+        "C": 5,
+        "D": 3,
+        "E": 4
+      },
+      "explanation": "Toleransi diwujudkan dengan sikap menghormati dan dukungan nyata di lingkungan kerja."
+    },
+    {
+      "id": "tkp-019",
+      "subtest": "TKP",
+      "topic": "sosial-budaya",
+      "difficulty": "sedang",
+      "question": "Atasan menjadwalkan rapat pada waktu yang bertepatan dengan jam ibadah sebagian anggota tim. Sikap Anda adalah ...",
+      "options": {
+        "A": "menyampaikan dengan sopan kepada atasan dan mengusulkan jadwal alternatif yang tidak bentrok",
+        "B": "tidak menghadiri rapat tanpa pemberitahuan",
+        "C": "mengeluhkan keputusan atasan kepada rekan-rekan",
+        "D": "menghadiri rapat lalu meminta izin ibadah sebentar",
+        "E": "mengikuti jadwal saja"
+      },
+      "scores": {
+        "A": 5,
+        "B": 2,
+        "C": 1,
+        "D": 4,
+        "E": 3
+      },
+      "explanation": "Komunikasi yang santun disertai usulan solusi menghormati kebutuhan semua pihak."
+    },
+    {
+      "id": "tkp-020",
+      "subtest": "TKP",
+      "topic": "sosial-budaya",
+      "difficulty": "sedang",
+      "question": "Anda ditempatkan di daerah dengan bahasa dan adat istiadat yang berbeda dari daerah asal Anda. Sikap Anda adalah ...",
+      "options": {
+        "A": "tetap memakai bahasa Indonesia dan kebiasaan sendiri",
+        "B": "menunggu masyarakat menyesuaikan diri dengan Anda",
+        "C": "mempelajari adat dan bahasa setempat serta aktif mengikuti kegiatan masyarakat",
+        "D": "mempelajari sapaan dan tata krama dasar setempat",
+        "E": "menganggap adat setempat tidak masuk akal"
+      },
+      "scores": {
+        "A": 3,
+        "B": 2,
+        "C": 5,
+        "D": 4,
+        "E": 1
+      },
+      "explanation": "Adaptasi aktif terhadap budaya setempat memudahkan pelayanan dan memperkuat persatuan."
+    },
+    {
+      "id": "tkp-021",
+      "subtest": "TKP",
+      "topic": "sosial-budaya",
+      "difficulty": "sedang",
+      "question": "Dalam obrolan santai, seorang rekan mengejek logat daerah rekan lainnya. Sikap Anda adalah ...",
+      "options": {
+        "A": "ikut mengejek",
+        "B": "ikut tertawa agar suasana tidak canggung",
+        "C": "diam saja",
+        "D": "mengingatkan rekan tersebut secara pribadi setelahnya",
+        "E": "menegur dengan halus dan mengingatkan bahwa hal tersebut dapat menyinggung serta pentingnya menghargai keberagaman"
+      },
+      "scores": {
+        "A": 1,
+        "B": 2,
+        "C": 3,
+        "D": 4,
+        "E": 5
+      },
+      "explanation": "Menghargai keberagaman berarti berani mengingatkan secara santun saat ada yang merendahkan budaya lain."
+    },
+    {
+      "id": "tkp-022",
+      "subtest": "TKP",
+      "topic": "sosial-budaya",
+      "difficulty": "mudah",
+      "question": "Warga di lingkungan tempat tinggal Anda mengadakan kerja bakti pada hari libur. Sikap Anda adalah ...",
+      "options": {
+        "A": "ikut serta aktif dan mengajak tetangga lain untuk terlibat",
+        "B": "beralasan sedang sibuk",
+        "C": "memberikan sumbangan dana saja",
+        "D": "ikut serta selama beberapa saat",
+        "E": "mengkritik kegiatan tersebut"
+      },
+      "scores": {
+        "A": 5,
+        "B": 2,
+        "C": 3,
+        "D": 4,
+        "E": 1
+      },
+      "explanation": "Gotong royong adalah nilai sosial budaya; partisipasi aktif dan mengajak orang lain adalah sikap terbaik."
+    },
+    {
+      "id": "tkp-023",
+      "subtest": "TKP",
+      "topic": "sosial-budaya",
+      "difficulty": "sedang",
+      "question": "Warga setempat menjalankan suatu tradisi yang berbeda dengan kebiasaan Anda, namun tidak melanggar hukum. Sikap Anda adalah ...",
+      "options": {
+        "A": "menyatakan ketidaksetujuan di hadapan warga",
+        "B": "menghormatinya dengan menjaga jarak",
+        "C": "meminta warga menghentikan tradisi tersebut",
+        "D": "tidak ikut campur",
+        "E": "menghormatinya dan mempelajari makna di balik tradisi tersebut"
+      },
+      "scores": {
+        "A": 2,
+        "B": 4,
+        "C": 1,
+        "D": 3,
+        "E": 5
+      },
+      "explanation": "Sikap menghormati dan berusaha memahami menjaga kerukunan di tengah perbedaan."
+    },
+    {
+      "id": "tkp-024",
+      "subtest": "TKP",
+      "topic": "sosial-budaya",
+      "difficulty": "sulit",
+      "question": "Di tim Anda ada rekan penyandang disabilitas. Sikap Anda adalah ...",
+      "options": {
+        "A": "membantunya bila ia meminta",
+        "B": "meragukan kemampuannya bekerja",
+        "C": "mengurangi pelibatannya agar tidak merepotkan",
+        "D": "memastikan ia mendapat akses dan fasilitas yang memadai, melibatkannya dalam kegiatan tim, dan memberi tugas sesuai kemampuannya",
+        "E": "memperlakukannya sama dengan rekan lain tanpa penyesuaian"
+      },
+      "scores": {
+        "A": 4,
+        "B": 1,
+        "C": 2,
+        "D": 5,
+        "E": 3
+      },
+      "explanation": "Inklusivitas berarti menyediakan akses yang sesuai dan memberi kesempatan setara."
+    },
+    {
+      "id": "tkp-025",
+      "subtest": "TKP",
+      "topic": "teknologi-informasi",
+      "difficulty": "mudah",
+      "question": "Kantor Anda mewajibkan penggunaan aplikasi baru yang belum Anda kuasai. Sikap Anda adalah ...",
+      "options": {
+        "A": "belajar mandiri melalui panduan, bertanya kepada rekan yang menguasai, dan berlatih hingga mahir",
+        "B": "meminta rekan mengerjakan tugas yang memakai aplikasi tersebut",
+        "C": "menunggu hingga ada pelatihan",
+        "D": "menolak memakai aplikasi karena merasa rumit",
+        "E": "mencoba menggunakannya sebisanya sambil bertanya bila ada kesulitan"
+      },
+      "scores": {
+        "A": 5,
+        "B": 2,
+        "C": 3,
+        "D": 1,
+        "E": 4
+      },
+      "explanation": "Inisiatif belajar teknologi baru menunjukkan adaptasi dan profesionalisme."
+    },
+    {
+      "id": "tkp-026",
+      "subtest": "TKP",
+      "topic": "teknologi-informasi",
+      "difficulty": "mudah",
+      "question": "Anda menerima email yang mengatasnamakan bagian TI dan meminta Anda mengeklik tautan untuk memasukkan kata sandi akun pegawai. Sikap Anda adalah ...",
+      "options": {
+        "A": "mengeklik tautan untuk memastikan kebenarannya",
+        "B": "menghapus email dan melaporkannya kepada tim TI nanti",
+        "C": "menghapus email tersebut",
+        "D": "tidak mengeklik tautan, melaporkannya kepada tim keamanan TI, dan mengingatkan rekan lain",
+        "E": "memasukkan kata sandi sesuai permintaan"
+      },
+      "scores": {
+        "A": 2,
+        "B": 4,
+        "C": 3,
+        "D": 5,
+        "E": 1
+      },
+      "explanation": "Email semacam ini adalah indikasi phishing; melapor dan mengingatkan rekan mencegah kerugian lebih luas."
+    },
+    {
+      "id": "tkp-027",
+      "subtest": "TKP",
+      "topic": "teknologi-informasi",
+      "difficulty": "sedang",
+      "question": "Seorang rekan meminta Anda mengirim dokumen internal yang bersifat rahasia melalui aplikasi pesan pribadi karena mendesak. Sikap Anda adalah ...",
+      "options": {
+        "A": "menyarankan rekan meminta dokumen tersebut melalui email resmi",
+        "B": "mengirim sebagian informasi saja",
+        "C": "mengirimkannya melalui aplikasi pesan karena mendesak",
+        "D": "mengunggahnya ke penyimpanan daring publik agar mudah diakses",
+        "E": "menolak, menjelaskan risikonya, dan mengirim melalui kanal resmi instansi yang aman"
+      },
+      "scores": {
+        "A": 4,
+        "B": 3,
+        "C": 2,
+        "D": 1,
+        "E": 5
+      },
+      "explanation": "Dokumen rahasia hanya boleh dikirim melalui kanal resmi yang aman, seberapa pun mendesaknya."
+    },
+    {
+      "id": "tkp-028",
+      "subtest": "TKP",
+      "topic": "teknologi-informasi",
+      "difficulty": "mudah",
+      "question": "Rekan senior Anda kesulitan membuat laporan digital dan meminta bantuan. Sikap Anda adalah ...",
+      "options": {
+        "A": "mengajarinya langkah demi langkah dengan sabar hingga ia mampu melakukannya sendiri",
+        "B": "mengejek ketidakmampuannya",
+        "C": "memberinya panduan tertulis",
+        "D": "menyuruhnya belajar sendiri",
+        "E": "membuatkan laporan tersebut untuknya"
+      },
+      "scores": {
+        "A": 5,
+        "B": 1,
+        "C": 3,
+        "D": 2,
+        "E": 4
+      },
+      "explanation": "Membimbing hingga mandiri lebih bermanfaat daripada sekadar mengerjakan atau membiarkan."
+    },
+    {
+      "id": "tkp-029",
+      "subtest": "TKP",
+      "topic": "teknologi-informasi",
+      "difficulty": "sedang",
+      "question": "Anda menemukan bahwa salah satu fitur aplikasi kantor kurang efisien dan memperlambat pekerjaan. Sikap Anda adalah ...",
+      "options": {
+        "A": "memakai cara sendiri di luar sistem resmi",
+        "B": "melaporkan masalah tersebut kepada pengelola aplikasi",
+        "C": "mengidentifikasi masalahnya dan mengusulkan perbaikan beserta alternatifnya kepada pengelola aplikasi",
+        "D": "mengeluh kepada rekan sekantor",
+        "E": "tidak lagi menggunakan aplikasi tersebut"
+      },
+      "scores": {
+        "A": 2,
+        "B": 4,
+        "C": 5,
+        "D": 3,
+        "E": 1
+      },
+      "explanation": "Memberi masukan konstruktif kepada pengelola sistem mendorong perbaikan layanan digital."
+    },
+    {
+      "id": "tkp-030",
+      "subtest": "TKP",
+      "topic": "teknologi-informasi",
+      "difficulty": "sedang",
+      "question": "Anda hendak mengunggah foto kegiatan kantor ke media sosial pribadi, dan di latar foto terlihat dokumen internal. Sikap Anda adalah ...",
+      "options": {
+        "A": "memeriksa foto, tidak mengunggah yang memperlihatkan informasi internal, dan hanya mengunggah foto yang aman",
+        "B": "mengunggah semua foto karena merasa bangga dengan kegiatan tersebut",
+        "C": "mengunggah foto setelah menutupi bagian dokumen yang terlihat",
+        "D": "mengunggah tanpa memperhatikan isi latar foto",
+        "E": "mengunggah foto dokumen secara jelas agar menarik perhatian"
+      },
+      "scores": {
+        "A": 5,
+        "B": 3,
+        "C": 4,
+        "D": 2,
+        "E": 1
+      },
+      "explanation": "ASN wajib menjaga kerahasiaan informasi; opsi paling aman adalah tidak mengunggah foto yang memuat informasi internal."
+    },
+    {
+      "id": "tkp-031",
+      "subtest": "TKP",
+      "topic": "teknologi-informasi",
+      "difficulty": "sedang",
+      "question": "Beredar kabar bohong tentang instansi Anda di media sosial. Sikap Anda adalah ...",
+      "options": {
+        "A": "melaporkannya kepada atasan",
+        "B": "mengklarifikasi dengan informasi resmi, melaporkannya kepada bagian humas, dan tidak ikut menyebarkan",
+        "C": "membagikannya sambil menambahkan komentar bantahan",
+        "D": "ikut menyebarkannya",
+        "E": "mengabaikannya"
+      },
+      "scores": {
+        "A": 4,
+        "B": 5,
+        "C": 2,
+        "D": 1,
+        "E": 3
+      },
+      "explanation": "Klarifikasi berbasis informasi resmi dan pelaporan ke humas menghentikan penyebaran hoaks tanpa memperluasnya."
+    },
+    {
+      "id": "tkp-032",
+      "subtest": "TKP",
+      "topic": "profesionalisme",
+      "difficulty": "sedang",
+      "question": "Anda harus menyerahkan laporan besok pagi, tetapi malam ini ada acara keluarga. Sikap Anda adalah ...",
+      "options": {
+        "A": "meminta perpanjangan waktu kepada atasan",
+        "B": "mengatur waktu agar laporan selesai lebih awal, lalu menghadiri acara keluarga",
+        "C": "menghadiri acara keluarga dan tidak menyelesaikan laporan",
+        "D": "menyelesaikan laporan sepulang dari acara keluarga",
+        "E": "meminta rekan menyelesaikan laporan tersebut"
+      },
+      "scores": {
+        "A": 3,
+        "B": 5,
+        "C": 1,
+        "D": 4,
+        "E": 2
+      },
+      "explanation": "Manajemen waktu yang baik memungkinkan tanggung jawab kerja dan keluarga terpenuhi."
+    },
+    {
+      "id": "tkp-033",
+      "subtest": "TKP",
+      "topic": "profesionalisme",
+      "difficulty": "sedang",
+      "question": "Anda menyadari terdapat kesalahan pada laporan yang telah dikirim kepada atasan. Sikap Anda adalah ...",
+      "options": {
+        "A": "segera menyampaikannya, memperbaiki dan mengirim ulang laporan, serta mencari penyebabnya agar tidak terulang",
+        "B": "menyalahkan rekan yang membantu menyusun laporan",
+        "C": "memperbaiki laporan dan mengirimkannya kembali",
+        "D": "menunggu apakah ada yang menyadari kesalahan tersebut",
+        "E": "membiarkannya karena kesalahannya kecil"
+      },
+      "scores": {
+        "A": 5,
+        "B": 1,
+        "C": 4,
+        "D": 3,
+        "E": 2
+      },
+      "explanation": "Akuntabilitas berarti jujur mengakui kesalahan, memperbaikinya, dan mencegah terulang."
+    },
+    {
+      "id": "tkp-034",
+      "subtest": "TKP",
+      "topic": "profesionalisme",
+      "difficulty": "sulit",
+      "question": "Atasan memberi Anda tugas yang berada di luar keahlian Anda. Sikap Anda adalah ...",
+      "options": {
+        "A": "menerima tugas tetapi tidak mengerjakannya",
+        "B": "menerima tugas tersebut, mempelajarinya, meminta bimbingan bila perlu, dan bertanggung jawab atas hasilnya",
+        "C": "meminta atasan menugaskannya kepada orang lain",
+        "D": "menerima tugas dan mengerjakannya sebisa mungkin",
+        "E": "menolak karena bukan keahlian Anda"
+      },
+      "scores": {
+        "A": 1,
+        "B": 5,
+        "C": 3,
+        "D": 4,
+        "E": 2
+      },
+      "explanation": "Profesional bersedia belajar dan bertanggung jawab atas tugas baru, bukan menghindarinya."
+    },
+    {
+      "id": "tkp-035",
+      "subtest": "TKP",
+      "topic": "profesionalisme",
+      "difficulty": "mudah",
+      "question": "Hasil kerja Anda dikritik oleh atasan di depan rekan-rekan. Sikap Anda adalah ...",
+      "options": {
+        "A": "mendengarkan, berterima kasih atas masukan, memperbaiki pekerjaan, dan meminta saran lanjutan",
+        "B": "membela diri dengan berbagai alasan",
+        "C": "menerima kritik dan memperbaiki pekerjaan",
+        "D": "tersinggung dan menyalahkan pihak lain",
+        "E": "menerima kritik tanpa mengubah apa pun"
+      },
+      "scores": {
+        "A": 5,
+        "B": 2,
+        "C": 4,
+        "D": 1,
+        "E": 3
+      },
+      "explanation": "Terbuka terhadap kritik dan menjadikannya bahan perbaikan adalah sikap profesional."
+    },
+    {
+      "id": "tkp-036",
+      "subtest": "TKP",
+      "topic": "profesionalisme",
+      "difficulty": "mudah",
+      "question": "Atasan Anda sedang dinas luar selama seminggu dan tidak ada yang memantau kehadiran Anda. Sikap Anda adalah ...",
+      "options": {
+        "A": "tetap mematuhi jam kerja",
+        "B": "tetap mematuhi jam kerja dan memanfaatkan waktu secara produktif",
+        "C": "sesekali datang terlambat jika ada keperluan penting",
+        "D": "pulang lebih awal jika pekerjaan hari itu sudah selesai",
+        "E": "memanfaatkan kesempatan itu untuk jarang masuk kantor"
+      },
+      "scores": {
+        "A": 4,
+        "B": 5,
+        "C": 3,
+        "D": 2,
+        "E": 1
+      },
+      "explanation": "Disiplin tidak bergantung pada pengawasan; integritas diukur saat tidak ada yang melihat."
+    },
+    {
+      "id": "tkp-037",
+      "subtest": "TKP",
+      "topic": "profesionalisme",
+      "difficulty": "sedang",
+      "question": "Anda menerima beberapa tugas sekaligus dengan tenggat yang berdekatan. Sikap Anda adalah ...",
+      "options": {
+        "A": "menunda semua tugas sampai mendekati tenggat",
+        "B": "mengerjakan semuanya sekaligus",
+        "C": "mengerjakan terlebih dahulu tugas yang paling disukai",
+        "D": "mengerjakan tugas satu per satu sesuai urutan datangnya",
+        "E": "menyusun prioritas berdasarkan urgensi, berkoordinasi dengan atasan, lalu mengerjakannya secara terstruktur"
+      },
+      "scores": {
+        "A": 1,
+        "B": 3,
+        "C": 2,
+        "D": 4,
+        "E": 5
+      },
+      "explanation": "Penentuan prioritas dan koordinasi membantu menyelesaikan banyak tugas dengan kualitas terjaga."
+    },
+    {
+      "id": "tkp-038",
+      "subtest": "TKP",
+      "topic": "profesionalisme",
+      "difficulty": "sedang",
+      "question": "Seorang rekan mengajak Anda memanipulasi daftar hadir agar keterlambatan tidak tercatat. Sikap Anda adalah ...",
+      "options": {
+        "A": "menolak tegas, mengingatkan konsekuensinya, dan melaporkan kepada atasan bila terulang",
+        "B": "menolak dengan halus agar tidak terjadi keributan",
+        "C": "mengikuti ajakan tersebut",
+        "D": "diam dan tidak menanggapi",
+        "E": "menolak ajakan tersebut"
+      },
+      "scores": {
+        "A": 5,
+        "B": 3,
+        "C": 1,
+        "D": 2,
+        "E": 4
+      },
+      "explanation": "Memanipulasi absensi adalah pelanggaran disiplin dan integritas; sikap tegas dan pelaporan adalah yang paling tepat."
+    },
+    {
+      "id": "tkp-039",
+      "subtest": "TKP",
+      "topic": "profesionalisme",
+      "difficulty": "sulit",
+      "question": "Terbit regulasi baru yang berkaitan dengan tugas Anda, tetapi Anda belum memahaminya. Sikap Anda adalah ...",
+      "options": {
+        "A": "mempelajari regulasi tersebut secara mandiri",
+        "B": "mengabaikan regulasi tersebut",
+        "C": "tetap memakai cara lama",
+        "D": "menunggu sosialisasi dari instansi",
+        "E": "mempelajari regulasi tersebut, berdiskusi dengan atasan atau pihak yang memahami, mengikuti sosialisasi, dan menerapkannya"
+      },
+      "scores": {
+        "A": 4,
+        "B": 1,
+        "C": 2,
+        "D": 3,
+        "E": 5
+      },
+      "explanation": "Kompetensi menuntut pembaruan pengetahuan dan penerapan regulasi secara proaktif."
+    },
+    {
+      "id": "tkp-040",
+      "subtest": "TKP",
+      "topic": "anti-radikalisme",
+      "difficulty": "sedang",
+      "question": "Seorang teman mengajak Anda bergabung dengan kelompok diskusi yang menolak Pancasila dan mengajak mengganti dasar negara dengan melawan pemerintah. Sikap Anda adalah ...",
+      "options": {
+        "A": "hadir sekali untuk melihat apa yang dibicarakannya",
+        "B": "mengikuti ajakan agar tidak mengecewakan teman",
+        "C": "menolak dan menjauhi kelompok tersebut",
+        "D": "bergabung dengan kelompok tersebut",
+        "E": "menolak dengan sopan, menegaskan komitmen Anda pada Pancasila dan NKRI, serta mengajak teman tersebut berdiskusi tentang cara menyalurkan aspirasi yang damai"
+      },
+      "scores": {
+        "A": 3,
+        "B": 2,
+        "C": 4,
+        "D": 1,
+        "E": 5
+      },
+      "explanation": "ASN wajib setia kepada Pancasila dan NKRI; menolak sambil mengarahkan teman ke jalur damai adalah sikap terbaik."
+    },
+    {
+      "id": "tkp-041",
+      "subtest": "TKP",
+      "topic": "anti-radikalisme",
+      "difficulty": "sedang",
+      "question": "Seorang rekan kerja sering membagikan konten provokatif yang menyerang pemerintah dan kelompok tertentu. Sikap Anda adalah ...",
+      "options": {
+        "A": "berhenti berkomunikasi dengan rekan tersebut",
+        "B": "mengingatkannya agar tidak menyebarkan konten tersebut",
+        "C": "mengabaikannya",
+        "D": "mengingatkannya dengan baik untuk memverifikasi konten, dan melaporkannya kepada atasan bila terus berlanjut",
+        "E": "ikut menyebarkan konten tersebut"
+      },
+      "scores": {
+        "A": 2,
+        "B": 4,
+        "C": 3,
+        "D": 5,
+        "E": 1
+      },
+      "explanation": "Mengingatkan secara baik dan melapor bila berlanjut mencegah penyebaran konten provokatif."
+    },
+    {
+      "id": "tkp-042",
+      "subtest": "TKP",
+      "topic": "anti-radikalisme",
+      "difficulty": "sedang",
+      "question": "Beredar ajakan di media sosial untuk berunjuk rasa dengan cara anarkis menolak sebuah kebijakan. Sikap Anda adalah ...",
+      "options": {
+        "A": "mengamati perkembangannya saja",
+        "B": "tidak ikut dalam unjuk rasa tersebut",
+        "C": "tidak ikut, menjelaskan bahwa aspirasi dapat disalurkan melalui jalur yang sah, dan mengajak rekan menyalurkannya secara damai",
+        "D": "hadir di lokasi tetapi hanya menonton",
+        "E": "ikut serta dalam unjuk rasa tersebut"
+      },
+      "scores": {
+        "A": 3,
+        "B": 4,
+        "C": 5,
+        "D": 2,
+        "E": 1
+      },
+      "explanation": "Aspirasi harus disampaikan secara damai dan sesuai hukum, bukan melalui cara anarkis."
+    },
+    {
+      "id": "tkp-043",
+      "subtest": "TKP",
+      "topic": "anti-radikalisme",
+      "difficulty": "sulit",
+      "question": "Anda diminta menandatangani petisi yang menolak Pancasila sebagai dasar negara. Sikap Anda adalah ...",
+      "options": {
+        "A": "menandatangani dan ikut menyebarkan petisi tersebut",
+        "B": "membaca isi petisi terlebih dahulu tanpa memutuskan",
+        "C": "menandatangani agar tidak dikucilkan",
+        "D": "menolak, menjelaskan kedudukan Pancasila sebagai dasar negara, dan melaporkannya kepada pihak berwenang",
+        "E": "menolak menandatangani petisi tersebut"
+      },
+      "scores": {
+        "A": 1,
+        "B": 3,
+        "C": 2,
+        "D": 5,
+        "E": 4
+      },
+      "explanation": "Pancasila adalah dasar negara; menolak dan melapor menunjukkan kesetiaan sebagai ASN."
+    },
+    {
+      "id": "tkp-044",
+      "subtest": "TKP",
+      "topic": "anti-radikalisme",
+      "difficulty": "sulit",
+      "question": "Sahabat Anda mulai terpengaruh paham yang menganggap kelompok lain harus dimusuhi. Sikap Anda adalah ...",
+      "options": {
+        "A": "menjauhinya",
+        "B": "ikut mendukung pandangannya",
+        "C": "menasihatinya agar tidak terpengaruh",
+        "D": "mengajaknya berdiskusi, menunjukkan sumber informasi yang benar, dan melibatkan keluarga atau tokoh yang dipercayainya bila perlu",
+        "E": "membiarkannya karena itu pilihannya"
+      },
+      "scores": {
+        "A": 3,
+        "B": 1,
+        "C": 4,
+        "D": 5,
+        "E": 2
+      },
+      "explanation": "Pendekatan persuasif dan melibatkan orang terpercaya lebih efektif mencegah radikalisasi daripada menjauh atau membiarkan."
+    },
+    {
+      "id": "tkp-045",
+      "subtest": "TKP",
+      "topic": "anti-radikalisme",
+      "difficulty": "sulit",
+      "question": "Dalam sebuah acara di kantor, pembicara tamu menyampaikan materi yang menyebarkan kebencian terhadap kelompok tertentu. Sikap Anda adalah ...",
+      "options": {
+        "A": "meninggalkan ruangan tanpa melapor",
+        "B": "menyetujui dan menyebarkan materi tersebut kepada rekan lain",
+        "C": "meninggalkan ruangan dan melaporkannya kepada pimpinan",
+        "D": "menyampaikan keberatan kepada panitia, mengusulkan materi yang sesuai nilai kebangsaan, dan melaporkannya kepada pimpinan",
+        "E": "menyimak saja tanpa bersikap"
+      },
+      "scores": {
+        "A": 3,
+        "B": 1,
+        "C": 4,
+        "D": 5,
+        "E": 2
+      },
+      "explanation": "Ujaran kebencian harus disikapi dengan keberatan yang konstruktif dan pelaporan kepada pimpinan."
+    }
+  ]
+}

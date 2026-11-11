@@ -367,16 +367,31 @@ export default function AttemptPage() {
                     !showPembahasan && 'text-slate-700',
                   )}>
                     {opsi.teks}
+                    {showPembahasan && soal.kategori === 'TKP' && typeof opsi.poin === 'number' && (
+                      <span className="ml-2 inline-block rounded bg-slate-200 px-2 py-0.5 text-xs font-medium text-slate-700">
+                        skor {opsi.poin}
+                      </span>
+                    )}
                   </span>
                 </button>
               );
             })}
           </div>
 
-          {showPembahasan && (
+          {showPembahasan && soal.kategori !== 'TKP' && (
             <div className="mt-4 p-3 rounded-md bg-blue-50 border border-blue-100">
               <p className="text-xs text-blue-700">
                 <span className="font-semibold">Kunci jawaban:</span> Pilihan {soal.kunci}
+              </p>
+            </div>
+          )}
+
+          {showPembahasan && soal.kategori === 'TKP' && (
+            <div className="mt-4 p-3 rounded-md bg-blue-50 border border-blue-100">
+              <p className="text-xs text-blue-700">
+                <span className="font-semibold">Skor jawabanmu:</span>{' '}
+                {soal.opsi.find((o) => o.kode === jawabanSoalIni)?.poin ?? 0} poin.
+                Soal TKP tidak memiliki satu kunci; setiap opsi bernilai 1–5.
               </p>
             </div>
           )}
