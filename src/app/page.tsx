@@ -1,22 +1,25 @@
-import { Suspense } from 'react';
-import { redirect } from 'next/navigation';
-import { getCurrentSession } from '@/lib/auth';
+'use client';
 
-async function HomeBody() {
-  const session = await getCurrentSession();
-
-  if (session) {
-    redirect('/dashboard');
-  }
-
-  redirect('/masuk');
-  return null;
-}
+import { useEffect, useState } from 'react';
+import { useRouter } from 'next/navigation';
 
 export default function Home() {
-  return (
-    <Suspense fallback={<div className="p-8 text-center text-slate-600">Memuat…</div>}>
-      <HomeBody />
-    </Suspense>
-  );
+  const router = useRouter();
+  const [checking, setChecking] = useState(true);
+
+  useEffect(() => {
+    const nama = localStorage.getItem('user_nama');
+    if (nama) {
+      router.push('/dashboard');
+    } else {
+      router.push('/nama');
+    }
+    setChecking(false);
+  }, [router]);
+
+  if (checking) {
+    return <div className="min-h-screen flex items-center justify-center">Memuat...</div>;
+  }
+
+  return null;
 }

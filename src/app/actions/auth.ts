@@ -45,16 +45,18 @@ export async function signUp(formData: FormData) {
   }
 
   try {
-    await api.signUpEmail({
+    const result = await api.signUpEmail({
       body: { email, password, name: namaTampil },
     });
-    return { success: true };
+    return { success: true, data: result };
   } catch (err: any) {
-    // Better Auth returns detailed error messages
-    if (err?.message?.includes('USER_ALREADY_EXISTS')) {
+    // Better Auth v1.7+ returns error with reason property
+    const errorMessage = err?.message || err?.reason || JSON.stringify(err);
+    if (errorMessage.includes('USER_ALREADY_EXISTS') || err?.context?.reason === 'USER_ALREADY_EXISTS') {
       return { error: 'Email sudah terdaftar. Silakan gunakan email lain atau masuk.' };
     }
-    return { error: 'Gagal mendaftar. Silakan coba lagi.' };
+    console.error('[SIGNUP ERROR]', err);
+    return { error: `Gagal mendaftar: ${errorMessage}` };
   }
 }
 
