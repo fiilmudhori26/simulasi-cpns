@@ -1,590 +1,277 @@
 'use client';
 
-import { useEffect, useState, useRef } from 'react';
+import { useEffect, useState } from 'react';
+import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import { cn } from '@/lib/utils';
-import { Statistik as StatistikType, useStatistik } from '@/data/statistik';
-import { motion, stagger, useInView } from 'framer-motion';
-import { useWebAudio } from '@/hooks/useSound';
-import { useToast } from '@/components/Toast';
+import { SiteHeader } from '@/components/SiteHeader';
+import { useStatistik } from '@/data/statistik';
 
-interface Kategori {
-  id: string;
-  nama: string;
-  persen: number;
-  warna: string;
-}
-
-const KATEGORI_SKD: Kategori[] = [
-  { id: 'hukum', nama: 'Hukum', persen: 0, warna: 'bg-blue-500' },
-  { id: 'pamong', nama: 'Pamong', persen: 0, warna: 'bg-green-500' },
-  { id: 'tatau', nama: 'Tata Uang', persen: 0, warna: 'bg-purple-500' },
-  { id: 'ipk', nama: 'IPK', persen: 0, warna: 'bg-orange-500' },
+const SUBTES = [
+  {
+    kode: 'TWK',
+    nama: 'Tes Wawasan Kebangsaan',
+    jumlah: 30,
+    waktu: '± 25 menit',
+    deskripsi:
+      'Pancasila, UUD 1945, sejarah kebangsaan, bela negara, hingga integritas ASN.',
+  },
+  {
+    kode: 'TIU',
+    nama: 'Tes Intelegensia Umum',
+    jumlah: 35,
+    waktu: '± 30 menit',
+    deskripsi:
+      'Verbal, numerik, deret, silogisme, dan penalaran analitis yang menuntut ketelitian.',
+  },
+  {
+    kode: 'TKP',
+    nama: 'Tes Karakteristik Pribadi',
+    jumlah: 45,
+    waktu: '± 45 menit',
+    deskripsi:
+      'Pelayanan publik, jejaring kerja, sosial budaya, teknologi informasi, dan profesionalisme.',
+  },
 ];
 
-// Counter animation component
-function CountUp({ value, duration = 1.5 }: { value: number; duration?: number }) {
-  const [count, setCount] = useState(0);
-  useEffect(() => {
-    const startTime = Date.now();
-    const endValue = value;
-    const animate = () => {
-      const elapsed = (Date.now() - startTime) / 1000;
-      const progress = Math.min(elapsed / duration, 1);
-      // Easing: easeOutCubic
-      const eased = 1 - Math.pow(1 - progress, 3);
-      setCount(Math.floor(eased * endValue));
-      if (progress < 1) requestAnimationFrame(animate);
-    };
-    requestAnimationFrame(animate);
-  }, [value, duration]);
-  return <span className="font-semibold text-slate-800">{count}</span>;
-}
-
-// Progress Ring Component
-function ProgressRing({ persen, warna = 'blue', size = 60, strokeWidth = 6 }: {
-  persen: number;
-  warna?: string;
-  size?: number;
-  strokeWidth?: number;
-}) {
-  const radius = (size - strokeWidth) / 2;
-  const circumference = 2 * Math.PI * radius;
-  const offset = circumference * (1 - persen / 100);
-
-  const warnaMap: Record<string, string> = {
-    blue: '#3b82f6',
-    green: '#22c55e',
-    purple: '#a855f7',
-    orange: '#f97316',
-  };
-
-  const color = warnaMap[warna] || warnaMap.blue;
-
-  return (
-    <div className="relative flex items-center justify-center" style={{ width: size, height: size }}>
-      <svg style={{ width: size, height: size, transform: 'rotate(-90deg)' }}>
-        <circle
-          className="text-slate-200"
-          strokeWidth={strokeWidth}
-          stroke="currentColor"
-          fill="transparent"
-          r={radius}
-          cx={size / 2}
-          cy={size / 2}
-        />
-        <motion.circle
-          initial={{ strokeDashoffset: circumference }}
-          animate={{ strokeDashoffset: offset }}
-          transition={{ duration: 1.2, delay: 0.5, ease: [0.25, 0.46, 0.45, 0.94] as const }}
-          className={cn('transition-all', `text-${warna}-500`)}
-          strokeWidth={strokeWidth}
-          stroke="currentColor"
-          fill="transparent"
-          r={radius}
-          cx={size / 2}
-          cy={size / 2}
-          strokeDasharray={circumference}
-          strokeLinecap="round"
-        />
-      </svg>
-      <div className="absolute inset-0 flex items-center justify-center">
-        <CountUp value={persen} duration={1} />
-        <span className="text-xs font-medium text-slate-500 ml-1">%</span>
-      </div>
-    </div>
-  );
-}
-
-// Skeleton Loader Components
-function SkeletonCard() {
-  return (
-    <div className="bg-white rounded-xl p-6 shadow-sm border border-slate-200">
-      <div className="h-5 w-3/12 bg-slate-200 rounded animate-pulse mb-4" />
-      <div className="space-y-3">
-        <div className="h-4 w-1/2 bg-slate-200 rounded animate-pulse" />
-        <div className="h-4 w-1/3 bg-slate-200 rounded animate-pulse" />
-        <div className="h-4 w-1/4 bg-slate-200 rounded animate-pulse" />
-      </div>
-    </div>
-  );
-}
-
-function SkeletonKategori() {
-  return (
-    <div className="bg-white rounded-xl p-4 shadow-sm border border-slate-200 animate-pulse">
-      <div className="flex items-center gap-3">
-        <div className="w-10 h-10 rounded-full bg-slate-200" />
-        <div className="flex-1 space-y-2">
-          <div className="h-4 w-2/3 bg-slate-200 rounded" />
-          <div className="h-3 w-1/2 bg-slate-200 rounded" />
-        </div>
-      </div>
-    </div>
-  );
-}
-
-// Scroll-triggered wrapper
-function ScrollReveal({ children, delay = 0 }: { children: React.ReactNode; delay?: number }) {
-  const ref = useRef<HTMLDivElement>(null);
-  const isInView = useInView(ref, { once: true, margin: '-50px' });
-
-  return (
-    <motion.div
-      ref={ref}
-      initial={{ opacity: 0, y: 30 }}
-      animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-      transition={{ duration: 0.6, delay, ease: [0.25, 0.46, 0.45, 0.94] as const }}
-    >
-      {children}
-    </motion.div>
-  );
-}
-
 export default function DashboardPage() {
-  const [nama, setNama] = useState('');
-  const [kategoris, setKategoris] = useState<Kategori[]>(KATEGORI_SKD);
-  const [isLoaded, setIsLoaded] = useState(false);
   const router = useRouter();
+  const [nama, setNama] = useState('');
   const statistik = useStatistik();
-  const { playClick, playSuccess, playWhoosh } = useWebAudio();
-  const { toast } = useToast();
 
   useEffect(() => {
     const storedNama = localStorage.getItem('user_nama');
     if (!storedNama) {
       router.push('/nama');
-    } else {
-      setNama(storedNama);
+      return;
     }
+    setNama(storedNama);
   }, [router]);
 
-  // Sinkron kategori dari statistik
-  useEffect(() => {
-    if (statistik.kategori) {
-      setKategoris([
-        {
-          id: 'hukum',
-          nama: 'Hukum',
-          persen: statistik.kategori.hukum.persen,
-          warna: 'bg-blue-500',
-        },
-        {
-          id: 'pamong',
-          nama: 'Pamong',
-          persen: statistik.kategori.pamong.persen,
-          warna: 'bg-green-500',
-        },
-        {
-          id: 'tatau',
-          nama: 'Tata Uang',
-          persen: statistik.kategori.tatau.persen,
-          warna: 'bg-purple-500',
-        },
-        {
-          id: 'ipk',
-          nama: 'IPK',
-          persen: statistik.kategori.ipk.persen,
-          warna: 'bg-orange-500',
-        },
-      ]);
-    }
-    // Mark as loaded after first render
-    setIsLoaded(true);
-  }, [statistik]);
-
-  const handleMulaiSimulasi = () => {
-    playSuccess();
-    toast('Memulai simulasi CPNS...', 'success');
-    router.push('/ujian/mulai');
-  };
-
-  const handleKlikKategori = (idKategori: string) => {
-    playClick();
-    toast(`Membuka latihan ${kategoris.find(k => k.id === idKategori)?.nama || idKategori}...`, 'info');
-    router.push(`/ujian/mulai?kategori=${idKategori}`);
-  };
-
   if (!nama) {
-    return <div className="min-h-screen flex items-center justify-center">Memuat...</div>;
+    return (
+      <div className="flex min-h-screen items-center justify-center">
+        <span className="text-sm text-muted">Memuat…</span>
+      </div>
+    );
   }
 
-  const Poin = statistik.poin || (statistik.besar + Math.round(statistik.benar * 5));
+  const akurasi =
+    statistik.besar > 0 ? Math.round((statistik.benar / statistik.besar) * 100) : 0;
 
-  // Variants for animations
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.1,
-        delayChildren: 0.2,
-      },
-    },
-  };
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: 0.5,
-        ease: [0.25, 0.46, 0.45, 0.94] as const,
-      },
-    },
-  };
-
-  const cardVariants = {
-    hidden: { opacity: 0, y: 30 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: 0.6,
-        ease: [0.25, 0.46, 0.45, 0.94] as const,
-      },
-    },
-    hover: {
-      y: -4,
-      boxShadow: '0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)',
-      transition: { duration: 0.2 },
-    },
-    tap: { scale: 0.98 },
-  };
-
-  const statItemVariants = {
-    hidden: { opacity: 0, x: -20 },
-    visible: (i: number) => ({
-      opacity: 1,
-      x: 0,
-      transition: {
-        delay: i * 0.1,
-        duration: 0.4,
-        ease: [0.25, 0.46, 0.45, 0.94] as const,
-      },
-    }),
-  };
+  const ringkasan = [
+    { label: 'Soal dikerjakan', nilai: statistik.besar, satuan: 'soal', catatan: 'Total sepanjang latihan' },
+    { label: 'Jawaban benar', nilai: statistik.benar, satuan: 'soal', catatan: 'Termasuk skor TKP' },
+    { label: 'Akurasi', nilai: akurasi, satuan: '%', catatan: 'Rata-rata seluruh sesi' },
+    { label: 'Streak', nilai: statistik.streak, satuan: 'hari', catatan: 'Jaga ritme belajarmu' },
+  ];
 
   return (
-    <div className="min-h-screen bg-slate-50">
-      {/* Header */}
-      <motion.nav
-        initial={{ y: -100 }}
-        animate={{ y: 0 }}
-        transition={{ duration: 0.5, ease: [0.25, 0.46, 0.45, 0.94] }}
-        className="bg-white border-b border-slate-200"
-      >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between h-16 items-center">
-            <div className="flex items-center gap-2">
-              <motion.span
-                initial={{ scale: 0, rotate: -180 }}
-                animate={{ scale: 1, rotate: 0 }}
-                transition={{ duration: 0.6, delay: 0.3, ease: [0.25, 0.46, 0.45, 0.94] }}
-                className="font-bold text-blue-700 text-2xl"
-              >
-                SKD
-              </motion.span>
-              <motion.span
-                initial={{ opacity: 0, x: -20 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.4, delay: 0.5 }}
-                className="font-semibold text-slate-700"
-              >
-                CPNS
-              </motion.span>
-            </div>
-            <motion.div
-              initial={{ opacity: 0, x: 20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.4, delay: 0.4 }}
-              className="hidden md:flex items-center gap-6"
-            >
-              <a
-                href="/dashboard"
-                className="px-3 py-2 text-sm font-medium text-slate-700 hover:text-blue-600 rounded-md transition-colors"
-              >
-                Beranda
-              </a>
-              <a
-                href="/riwayat"
-                className="px-3 py-2 text-sm font-medium text-slate-700 hover:text-blue-600 rounded-md transition-colors"
-              >
-                Riwayat
-              </a>
-              <a
-                href="/ujian/leaderboard"
-                className="px-3 py-2 text-sm font-medium text-slate-700 hover:text-blue-600 rounded-md transition-colors"
-              >
-                Leaderboard
-              </a>
-            </motion.div>
+    <div className="min-h-screen">
+      <SiteHeader nama={nama} />
+
+      <main className="mx-auto max-w-6xl px-4 pb-28 pt-6 sm:px-6 md:pb-14 md:pt-10">
+        {/* Sapaan */}
+        <div className="mb-7 flex flex-wrap items-end justify-between gap-3">
+          <div>
+            <p className="eyebrow">Ruang latihan</p>
+            <h1 className="mt-2 font-display text-2xl font-bold text-ink sm:text-[28px]">
+              Halo, {nama}
+            </h1>
+            <p className="mt-1 text-sm text-muted">
+              Satu sesi lagi hari ini lebih baik daripada menunda sampai besok.
+            </p>
           </div>
+          <span className="chip chip-gold">Target SKD 2026</span>
         </div>
-      </motion.nav>
 
-      {/* Main Content */}
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        {/* Greeting & Poin */}
-        <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          animate="visible"
-          className="mb-8"
-        >
-          <motion.h1
-            variants={itemVariants}
-            className="text-2xl font-bold text-slate-800"
-          >
-            Selamat datang,
-            <motion.span
-              className="text-blue-600"
-              initial={{ opacity: 0, x: -10 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ delay: 0.2, duration: 0.4 }}
-            >
-              {' '}
-              {nama}
-            </motion.span>{' '}
-            <motion.span
-              initial={{ scale: 0 }}
-              animate={{ scale: 1 }}
-              transition={{ delay: 0.3, duration: 0.4, type: 'spring', stiffness: 200 }}
-            >
-              🎉
-            </motion.span>
-          </motion.h1>
-          <motion.div
-            variants={itemVariants}
-            className="flex items-center gap-6 mt-2 text-sm text-slate-600"
-          >
-            <span>
-              Poin:{' '}
-              <motion.span
-                className="font-semibold text-amber-500"
-                initial={{ opacity: 0, scale: 0.5 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ delay: 0.4, duration: 0.5, type: 'spring', stiffness: 200 }}
-              >
-                <CountUp value={Poin} duration={1.5} />
-              </motion.span>
-            </span>
-            <span>
-              Tingkat:{' '}
-              <span className="font-medium text-slate-800">Pemula</span>
-            </span>
-            {statistik.streak > 0 && (
-              <motion.span
-                className="text-amber-600"
-                initial={{ opacity: 0, x: 20 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: 0.5, duration: 0.4 }}
-              >
-                🔥 Streak: {statistik.streak}h
-              </motion.span>
-            )}
-          </motion.div>
-        </motion.div>
+        {/* Hero simulasi penuh */}
+        <section className="relative overflow-hidden rounded-[22px] bg-brand text-white shadow-[0_28px_70px_-40px_rgba(18,58,143,0.9)]">
+          <div
+            className="pointer-events-none absolute -right-24 -top-24 h-72 w-72 rounded-full opacity-40"
+            style={{ background: 'radial-gradient(circle, rgba(232,163,61,0.55), transparent 65%)' }}
+            aria-hidden="true"
+          />
+          <div
+            className="pointer-events-none absolute -bottom-32 -left-16 h-72 w-72 rounded-full opacity-30"
+            style={{ background: 'radial-gradient(circle, rgba(255,255,255,0.35), transparent 65%)' }}
+            aria-hidden="true"
+          />
 
-        {/* Cards Utama - Statistik & Mulai Simulasi */}
-        <ScrollReveal delay={0.1}>
-          <motion.div
-            variants={containerVariants}
-            initial="hidden"
-            animate="visible"
-            className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8"
-          >
-            {/* Statistik Card */}
-            <motion.div
-              variants={cardVariants}
-              whileHover="hover"
-              whileTap="tap"
-              className="bg-white rounded-xl p-6 shadow-sm border border-slate-200"
-            >
-              <motion.h2
-                variants={itemVariants}
-                className="text-lg font-semibold text-slate-800 mb-4"
-              >
-                Statistik Anda
-              </motion.h2>
-              <motion.div
-                variants={containerVariants}
-                initial="hidden"
-                animate="visible"
-                className="space-y-3"
-              >
-                <motion.div variants={statItemVariants} className="flex justify-between items-center">
-                  <span className="text-slate-600">Pertanyaan Besar</span>
-                  <CountUp value={statistik.besar} duration={1.2} />
-                </motion.div>
-                <motion.div variants={statItemVariants} className="flex justify-between items-center">
-                  <span className="text-slate-600">Benar</span>
-                  <span className="font-semibold text-slate-800">
-                    <CountUp value={statistik.benar} duration={1.2} /> ({statistik.persen}%)
-                  </span>
-                </motion.div>
-                <motion.div variants={statItemVariants} className="flex justify-between items-center">
-                  <span className="text-slate-600">Streak Hari</span>
-                  <span className="text-amber-500"><CountUp value={statistik.streak} duration={1} /></span>
-                </motion.div>
-              </motion.div>
-            </motion.div>
+          <div className="relative grid gap-8 p-6 sm:p-8 md:grid-cols-[1.15fr_0.85fr] md:p-10">
+            <div className="flex flex-col justify-center">
+              <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-white/60">
+                Simulasi penuh SKD
+              </p>
+              <h2 className="mt-3 max-w-md font-display text-[26px] font-bold leading-tight text-white sm:text-[34px]">
+                Latih ritme ujian, bukan cuma hafal soal.
+              </h2>
+              <p className="mt-3 max-w-md text-sm leading-relaxed text-white/70">
+                110 soal dari bank soal terverifikasi, disusun seperti ujian sebenarnya.
+                Kerjakan sekali duduk, lalu lihat skor dan pembahasannya.
+              </p>
 
-            {/* Mulai Simulasi Card */}
-            <motion.div
-              variants={cardVariants}
-              whileHover="hover"
-              whileTap="tap"
-              className="bg-white rounded-xl p-6 shadow-sm border border-slate-200"
-            >
-              <motion.h2
-                variants={itemVariants}
-                className="text-lg font-semibold text-slate-800 mb-4"
-              >
-                Mulai Simulasi
-              </motion.h2>
-              <motion.p
-                variants={itemVariants}
-                className="text-slate-600 mb-4"
-              >
-                Ujian lengkap untuk mencapai kesiapan CPNS
-              </motion.p>
-              <motion.button
-                onClick={handleMulaiSimulasi}
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
-                className="w-full py-3 px-4 rounded-md text-lg font-semibold text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-all"
-              >
-                <motion.span
-                  animate={{ rotate: [0, 5, -5, 0] }}
-                  transition={{ duration: 1.5, repeat: Infinity, repeatDelay: 2 }}
+              <div className="mt-6 flex flex-col gap-3 sm:flex-row">
+                <Link href="/ujian/mulai" className="btn btn-gold btn-lg">
+                  Mulai simulasi
+                  <svg className="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                    <path d="M5 12h14" />
+                    <path d="m13 6 6 6-6 6" />
+                  </svg>
+                </Link>
+                <Link
+                  href="/ujian/mulai?mode=kategori"
+                  className="btn btn-lg border border-white/25 bg-white/10 text-white hover:bg-white/15"
                 >
-                  🔥
-                </motion.span>{' '}
-                Mulai Sekarang
-              </motion.button>
-            </motion.div>
-          </motion.div>
-        </ScrollReveal>
+                  Latihan per subtes
+                </Link>
+              </div>
 
-        {/* Kategori SKD with Progress Ring */}
-        <ScrollReveal delay={0.2}>
-          <motion.div
-            variants={containerVariants}
-            initial="hidden"
-            animate="visible"
-          >
-            <motion.h2
-              variants={itemVariants}
-              className="text-xl font-bold text-slate-800 mb-4"
-            >
-              Kategori SKD
-            </motion.h2>
-            <motion.div
-              variants={containerVariants}
-              initial="hidden"
-              animate="visible"
-              className="grid grid-cols-2 md:grid-cols-4 gap-4"
-            >
-              {isLoaded ? (
-                kategoris.map((kategori, index) => (
-                  <motion.button
-                    key={kategori.id}
-                    onClick={() => handleKlikKategori(kategori.id)}
-                    variants={cardVariants}
-                    whileHover="hover"
-                    whileTap="tap"
-                    style={{ transitionDelay: `${index * 0.1}s` } as React.CSSProperties}
-                    className="bg-white rounded-xl p-4 shadow-sm border border-slate-200 flex flex-col items-center"
-                  >
-                    <motion.div
-                      initial={{ scale: 0, rotate: -90 }}
-                      animate={{ scale: 1, rotate: 0 }}
-                      transition={{ delay: 0.2 + index * 0.1, type: 'spring', stiffness: 200, damping: 15 }}
-                      className="w-16 h-16 mb-3 flex items-center justify-center"
-                    >
-                      <ProgressRing
-                        persen={kategori.persen}
-                        warna={kategori.warna.replace('bg-', '').replace('-500', '')}
-                        size={64}
-                        strokeWidth={6}
-                      />
-                    </motion.div>
-                    <motion.div
-                      initial={{ opacity: 0, x: -20 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      transition={{ delay: 0.3 + index * 0.1 }}
-                      className="text-center"
-                    >
-                      <p className="font-medium text-slate-800">{kategori.nama}</p>
-                      <p className="text-sm text-slate-500">
-                        {kategori.persen > 0 ? `${kategori.persen}% selesai` : 'Mulai belajar'}
-                      </p>
-                    </motion.div>
-                  </motion.button>
-                ))
-              ) : (
-                Array.from({ length: 4 }).map((_, i) => (
-                  <SkeletonKategori key={i} />
-                ))
-              )}
-            </motion.div>
-          </motion.div>
-        </ScrollReveal>
-
-        {/* Motivational Quote Section */}
-        <ScrollReveal delay={0.3}>
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, ease: [0.25, 0.46, 0.45, 0.94] as const }}
-            className="mt-12 p-6 bg-gradient-to-r from-blue-500 to-blue-700 rounded-2xl text-white"
-          >
-            <div className="max-w-2xl mx-auto text-center">
-              <motion.p
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.2, duration: 0.5 }}
-                className="text-lg font-medium mb-2"
-              >
-                "Kesuksesan adalah jumlah dari usaha kecil yang diulang hari demi hari."
-              </motion.p>
-              <motion.p
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.3, duration: 0.5 }}
-                className="text-blue-100 text-sm"
-              >
-                — Robert Collier
-              </motion.p>
+              <div className="mt-6 flex flex-wrap gap-x-5 gap-y-2 text-xs text-white/60">
+                <span className="inline-flex items-center gap-1.5">
+                  <span className="h-1.5 w-1.5 rounded-full bg-gold" />
+                  110 soal
+                </span>
+                <span className="inline-flex items-center gap-1.5">
+                  <span className="h-1.5 w-1.5 rounded-full bg-gold" />
+                  100 menit
+                </span>
+                <span className="inline-flex items-center gap-1.5">
+                  <span className="h-1.5 w-1.5 rounded-full bg-gold" />
+                  Pembahasan lengkap
+                </span>
+              </div>
             </div>
-          </motion.div>
-        </ScrollReveal>
-      </main>
 
-      {/* Navigasi Bawah - Mobile */}
-      <motion.div
-        initial={{ y: 100 }}
-        animate={{ y: 0 }}
-        transition={{ duration: 0.5, delay: 0.8, ease: [0.25, 0.46, 0.45, 0.94] }}
-        className="fixed bottom-0 left-0 right-0 bg-white border-t border-slate-200 md:hidden"
-      >
-        <div className="flex justify-around py-3">
-          <a href="/dashboard" className="flex flex-col items-center text-blue-600">
-            <span className="text-xl">🏠</span>
-            <span className="text-xs">Beranda</span>
-          </a>
-          <a href="/riwayat" className="flex flex-col items-center text-slate-500">
-            <span className="text-xl">📚</span>
-            <span className="text-xs">Riwayat</span>
-          </a>
-          <a href="/ujian/leaderboard" className="flex flex-col items-center text-slate-500">
-            <span className="text-xl">🏆</span>
-            <span className="text-xs">Leaderboard</span>
-          </a>
-        </div>
-      </motion.div>
+            <div className="rounded-2xl border border-white/15 bg-white/[0.07] p-5 backdrop-blur-sm">
+              <div className="flex items-center justify-between">
+                <p className="text-xs font-semibold uppercase tracking-[0.14em] text-white/60">
+                  Komposisi
+                </p>
+                <span className="chip border-white/20 bg-white/10 text-white">Total 550</span>
+              </div>
+              <ul className="mt-4 space-y-3.5">
+                {[
+                  { kode: 'TWK', jumlah: 30, maks: 150, lebar: '27%' },
+                  { kode: 'TIU', jumlah: 35, maks: 175, lebar: '32%' },
+                  { kode: 'TKP', jumlah: 45, maks: 225, lebar: '41%' },
+                ].map((item) => (
+                  <li key={item.kode}>
+                    <div className="flex items-baseline justify-between text-sm">
+                      <span className="font-semibold text-white">{item.kode}</span>
+                      <span className="text-xs text-white/60">
+                        {item.jumlah} soal · maks {item.maks}
+                      </span>
+                    </div>
+                    <div className="mt-1.5 h-1.5 overflow-hidden rounded-full bg-white/15">
+                      <div className="h-full rounded-full bg-gold" style={{ width: item.lebar }} />
+                    </div>
+                  </li>
+                ))}
+              </ul>
+              <p className="mt-4 border-t border-white/10 pt-3 text-[11px] leading-relaxed text-white/55">
+                Skor TWK &amp; TIU: 5 poin per jawaban benar. TKP: 1–5 poin per opsi.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        {/* Ringkasan statistik */}
+        <section className="mt-6 grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-4">
+          {ringkasan.map((item) => (
+            <div key={item.label} className="surface p-4 sm:p-5">
+              <p className="text-[11px] font-semibold uppercase tracking-[0.12em] text-muted-soft">
+                {item.label}
+              </p>
+              <p className="mt-2 font-display text-[26px] font-bold leading-none text-ink">
+                {item.nilai}
+                <span className="ml-1 text-sm font-semibold text-muted-soft">{item.satuan}</span>
+              </p>
+              <p className="mt-2 text-[11px] leading-snug text-muted">{item.catatan}</p>
+            </div>
+          ))}
+        </section>
+
+        {/* Subtes */}
+        <section className="mt-10">
+          <div className="mb-4 flex items-end justify-between gap-4">
+            <div>
+              <p className="eyebrow">Latihan terarah</p>
+              <h2 className="mt-1.5 font-display text-xl font-bold text-ink">
+                Pilih subtes
+              </h2>
+            </div>
+            <Link href="/ujian/mulai?mode=kategori" className="text-sm font-semibold text-brand hover:text-brand-600">
+              Atur sendiri →
+            </Link>
+          </div>
+
+          <div className="grid gap-3 sm:gap-4 md:grid-cols-3">
+            {SUBTES.map((subtes) => (
+              <Link
+                key={subtes.kode}
+                href={`/ujian/mulai?kategori=${subtes.kode}`}
+                className="surface surface-hover group flex flex-col p-5"
+              >
+                <div className="flex items-start justify-between">
+                  <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-brand-soft font-display text-xs font-extrabold text-brand">
+                    {subtes.kode}
+                  </span>
+                  <span className="chip chip-muted">{subtes.jumlah} soal</span>
+                </div>
+                <h3 className="mt-4 font-display text-base font-bold text-ink">
+                  {subtes.nama}
+                </h3>
+                <p className="mt-1.5 flex-1 text-[13px] leading-relaxed text-muted">
+                  {subtes.deskripsi}
+                </p>
+                <div className="mt-4 flex items-center justify-between border-t border-line pt-3">
+                  <span className="text-[11px] font-medium text-muted-soft">{subtes.waktu}</span>
+                  <span className="text-sm font-semibold text-brand transition-transform group-hover:translate-x-0.5">
+                    Mulai →
+                  </span>
+                </div>
+              </Link>
+            ))}
+          </div>
+        </section>
+
+        {/* Tips */}
+        <section className="mt-8 grid gap-3 sm:gap-4 md:grid-cols-[1.4fr_1fr]">
+          <div className="surface-muted p-5 sm:p-6">
+            <p className="eyebrow">Cara kerja</p>
+            <ol className="mt-3 grid gap-3 text-sm text-ink-soft sm:grid-cols-3">
+              {[
+                ['1', 'Pilih sesi', 'Simulasi penuh atau latihan per subtes.'],
+                ['2', 'Kerjakan', 'Jawab soal satu per satu tanpa terburu-buru.'],
+                ['3', 'Evaluasi', 'Lihat skor, kunci, dan pembahasan.'],
+              ].map(([nomor, judul, isi]) => (
+                <li key={nomor} className="flex gap-2.5">
+                  <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-white font-display text-[11px] font-bold text-brand shadow-sm">
+                    {nomor}
+                  </span>
+                  <span>
+                    <span className="block font-semibold text-ink">{judul}</span>
+                    <span className="block text-xs leading-relaxed text-muted">{isi}</span>
+                  </span>
+                </li>
+              ))}
+            </ol>
+          </div>
+
+          <div className="rounded-[18px] border border-[#f7e3c2] bg-gold-soft p-5 sm:p-6">
+            <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-gold-ink">
+              Pengingat
+            </p>
+            <p className="mt-2 font-display text-[15px] font-bold leading-snug text-[#4a3108]">
+              “Konsistensi mengalahkan intensitas.”
+            </p>
+            <p className="mt-2 text-xs leading-relaxed text-gold-ink">
+              Cukup 30 menit sehari, tetapi dilakukan setiap hari. Skor akan mengikuti
+              kebiasaanmu, bukan mood-mu.
+            </p>
+          </div>
+        </section>
+      </main>
     </div>
   );
 }

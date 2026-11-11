@@ -1,7 +1,6 @@
 'use client';
 
-import { useState, useCallback, createContext, useContext, ReactNode } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { useEffect, useCallback, createContext, useContext, useState, ReactNode } from 'react';
 import { cn } from '@/lib/utils';
 
 interface Toast {
@@ -23,31 +22,39 @@ export function ToastProvider({ children }: { children: ReactNode }) {
 
   const toast = useCallback((message: string, type: Toast['type'] = 'info', duration = 4000) => {
     const id = Math.random().toString(36).slice(2, 9);
-    setToasts(prev => [...prev, { id, message, type, duration }]);
+    setToasts((prev) => [...prev, { id, message, type, duration }]);
   }, []);
 
   const dismiss = useCallback((id: string) => {
-    setToasts(prev => prev.filter(t => t.id !== id));
+    setToasts((prev) => prev.filter((t) => t.id !== id));
   }, []);
 
   return (
     <ToastContext.Provider value={{ toast, dismiss }}>
       {children}
-      <AnimatePresence>
-        {toasts.map(toast => (
-          <ToastItem key={toast.id} toast={toast} onDismiss={dismiss} />
+      <div className="pointer-events-none fixed inset-x-0 bottom-20 z-50 flex flex-col items-center gap-2 px-4 md:bottom-6 md:items-end md:px-6">
+        {toasts.map((item) => (
+          <ToastItem key={item.id} toast={item} onDismiss={dismiss} />
         ))}
-      </AnimatePresence>
+      </div>
     </ToastContext.Provider>
   );
 }
 
 function ToastItem({ toast, onDismiss }: { toast: Toast; onDismiss: (id: string) => void }) {
+  const { id, duration = 4000 } = toast;
+
+  useEffect(() => {
+    if (!duration) return;
+    const timer = window.setTimeout(() => onDismiss(id), duration);
+    return () => window.clearTimeout(timer);
+  }, [id, duration, onDismiss]);
+
   const typeStyles = {
-    success: 'bg-green-600 text-white',
-    error: 'bg-red-600 text-white',
-    info: 'bg-blue-600 text-white',
-    warning: 'bg-amber-600 text-white',
+    success: 'border-[#c6ecdd] bg-success-soft text-[#0a5c40]',
+    error: 'border-[#f6cfca] bg-danger-soft text-[#8f2a20]',
+    info: 'border-[#dbe6ff] bg-brand-soft text-brand',
+    warning: 'border-[#f7e3c2] bg-gold-soft text-gold-ink',
   };
 
   const icons = {
@@ -58,30 +65,30 @@ function ToastItem({ toast, onDismiss }: { toast: Toast; onDismiss: (id: string)
   };
 
   return (
-    <motion.div
-      initial={{ opacity: 0, x: 300, scale: 0.9 }}
-      animate={{ opacity: 1, x: 0, scale: 1 }}
-      exit={{ opacity: 0, x: 300, scale: 0.9 }}
-      transition={{ type: 'spring', stiffness: 300, damping: 25 }}
+    <div
+      role="status"
+      onClick={() => onDismiss(id)}
       className={cn(
-        'fixed bottom-6 right-6 z-50 px-4 py-3 rounded-xl shadow-lg',
-        'flex items-center gap-3 min-w-[280px] max-w-md',
-        typeStyles[toast.type]
+        'toast-item pointer-events-auto flex w-full max-w-sm items-start gap-3 rounded-xl border px-4 py-3 shadow-md',
+        typeStyles[toast.type],
       )}
-      onClick={() => onDismiss(toast.id)}
     >
-      <span className="flex-shrink-0 text-lg">{icons[toast.type]}</span>
-      <p className="flex-1 text-sm font-medium">{toast.message}</p>
-      <motion.button
-        whileHover={{ scale: 1.1 }}
-        whileTap={{ scale: 0.9 }}
-        onClick={(e) => { e.stopPropagation(); onDismiss(toast.id); }}
-        className="flex-shrink-0 text-xl leading-none opacity-70 hover:opacity-100"
-        aria-label="Dismiss"
+      <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-white/60 text-xs font-bold">
+        {icons[toast.type]}
+      </span>
+      <p className="flex-1 text-sm font-medium leading-relaxed">{toast.message}</p>
+      <button
+        type="button"
+        onClick={(e) => {
+          e.stopPropagation();
+          onDismiss(id);
+        }}
+        className="shrink-0 text-lg leading-none opacity-50 transition-opacity hover:opacity-100"
+        aria-label="Tutup notifikasi"
       >
         ×
-      </motion.button>
-    </motion.div>
+      </button>
+    </div>
   );
 }
 

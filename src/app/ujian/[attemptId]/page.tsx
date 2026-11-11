@@ -45,6 +45,8 @@ const SAMPLE_SOAL: SoalUjian = {
   pembahasan: 'Sila keempat Pancasila menekankan musyawarah untuk mufakat sebagai nilai dasar.',
 };
 
+const TINGKAT_LABEL = ['', 'Mudah', 'Sedang', 'Sulit'];
+
 export default function AttemptPage() {
   const params = useParams();
   const router = useRouter();
@@ -224,21 +226,22 @@ export default function AttemptPage() {
   }, [menyelesaikan, hitungSkorLokal, jawabanUser, soalList, attemptId, nama, attempt, router]);
 
   if (loading || !nama) {
-    return <div className="min-h-screen flex items-center justify-center">Memuat soal...</div>;
+    return (
+      <div className="flex min-h-screen items-center justify-center">
+        <span className="text-sm text-muted">Memuat soal…</span>
+      </div>
+    );
   }
 
   if (soalList.length === 0) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-slate-50 px-4">
-        <div className="text-center max-w-md">
-          <p className="text-slate-700 font-medium mb-2">Bank soal belum tersedia.</p>
-          <p className="text-sm text-slate-500 mb-4">
+      <div className="flex min-h-screen items-center justify-center px-4">
+        <div className="surface max-w-md p-8 text-center">
+          <p className="font-display text-base font-bold text-ink">Bank soal belum tersedia</p>
+          <p className="mt-2 text-sm leading-relaxed text-muted">
             Belum ada soal terverifikasi. Hubungi admin untuk mengimpor dan memverifikasi soal.
           </p>
-          <button
-            onClick={() => router.push('/ujian/mulai')}
-            className="px-4 py-2 bg-blue-600 text-white rounded-md text-sm"
-          >
+          <button onClick={() => router.push('/ujian/mulai')} className="btn btn-primary mt-5">
             Kembali ke Mulai Ujian
           </button>
         </div>
@@ -251,13 +254,10 @@ export default function AttemptPage() {
 
   if (!soal || !soal.opsi?.length) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-red-50">
-        <div>
-          <p className="text-red-600 mb-2">Error: Soal tidak valid</p>
-          <button
-            onClick={() => router.push('/ujian/mulai')}
-            className="mt-4 px-4 py-2 bg-blue-600 text-white rounded-md"
-          >
+      <div className="flex min-h-screen items-center justify-center px-4">
+        <div className="surface max-w-md p-8 text-center">
+          <p className="font-display text-base font-bold text-ink">Soal tidak valid</p>
+          <button onClick={() => router.push('/ujian/mulai')} className="btn btn-primary mt-5">
             Kembali ke Mulai Ujian
           </button>
         </div>
@@ -267,62 +267,84 @@ export default function AttemptPage() {
 
   const jawabanSoalIni = jawabanUser[soal.id];
   const showPembahasan = isPembahasan && !!jawabanSoalIni;
+  // TKP tidak punya satu kunci: setiap opsi bernilai 1–5.
+  const isTKP = soal.kategori === 'TKP';
   // Di mode pembahasan, jawaban dikunci setelah dipilih (agar kunci bisa ditampilkan).
   const terkunci = isPembahasan && !!jawabanSoalIni;
   const isTerakhir = soalSaatIni >= soalList.length - 1;
+  const jumlahTerjawab = Object.keys(jawabanUser).length;
+  const progres = ((soalSaatIni + 1) / soalList.length) * 100;
 
   return (
-    <div className="min-h-screen bg-slate-50">
-      <main className="max-w-2xl mx-auto px-4 py-6">
-        {isPembahasan && (
-          <div className="mb-4 p-3 bg-purple-100 border border-purple-200 rounded-lg">
-            <div className="flex items-center gap-2">
-              <svg className="w-4 h-4 text-purple-600" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M12 2a10 10 0 1 0 10 10A10.011 10.011 0 0 0 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/>
-              </svg>
-              <span className="text-sm font-medium text-purple-800">Mode Pembahasan Aktif</span>
+    <div className="min-h-screen bg-canvas">
+      {/* Bilah atas ringkas */}
+      <header className="sticky top-0 z-40 border-b border-line bg-white/95 backdrop-blur">
+        <div className="mx-auto flex h-16 max-w-3xl items-center gap-3 px-4 sm:px-6">
+          <button
+            onClick={() => router.push('/dashboard')}
+            className="flex items-center gap-2 text-sm font-semibold text-muted transition-colors hover:text-ink"
+            aria-label="Keluar dari ujian"
+          >
+            <span className="flex h-8 w-8 items-center justify-center rounded-[9px] bg-brand text-[10px] font-extrabold text-white">
+              SKD
+            </span>
+            <span className="hidden sm:inline">Keluar</span>
+          </button>
+
+          <div className="flex flex-1 items-center gap-3">
+            <div className="progress flex-1">
+              <div className="progress-bar" style={{ width: `${progres}%` }} />
             </div>
-            <p className="mt-1 text-xs text-purple-700">Pilih jawabanmu untuk melihat kunci dan penjelasan</p>
+            <span className="shrink-0 font-display text-xs font-bold tabular-nums text-ink">
+              {soalSaatIni + 1}
+              <span className="font-medium text-muted-soft">/{soalList.length}</span>
+            </span>
+          </div>
+
+          <span className={cn('chip', isPembahasan ? 'chip-gold' : 'chip-brand')}>
+            {isPembahasan ? 'Pembahasan' : soal.kategori}
+          </span>
+        </div>
+      </header>
+
+      <main className="mx-auto max-w-3xl px-4 pb-36 pt-5 sm:px-6 sm:pt-8">
+        {isPembahasan && (
+          <div className="mb-4 rounded-xl border border-[#f7e3c2] bg-gold-soft px-4 py-3 text-xs text-gold-ink">
+            <span className="font-semibold">Mode pembahasan aktif.</span> Kunci dan penjelasan
+            muncul setelah kamu memilih jawaban.
           </div>
         )}
 
         {sumber === 'contoh' && (
-          <div className="mb-4 p-3 bg-amber-50 border border-amber-200 rounded-lg">
-            <p className="text-xs text-amber-800">
-              <span className="font-semibold">Catatan:</span> bank soal terverifikasi masih kosong,
-              sehingga ditampilkan soal contoh. Soal asli akan tampil setelah diimpor dan diverifikasi admin.
-            </p>
+          <div className="mb-4 rounded-xl border border-[#f7e3c2] bg-warning-soft px-4 py-3 text-xs leading-relaxed text-warning">
+            <span className="font-semibold">Catatan:</span> bank soal terverifikasi belum
+            tersedia, sehingga ditampilkan soal contoh.
           </div>
         )}
 
-        {/* Progress */}
-        <div className="mb-4">
-          <div className="flex justify-between text-sm text-slate-600 mb-2">
-            <span>Soal {soalSaatIni + 1} dari {soalList.length}</span>
-            <span>{soal.kategori}</span>
+        {/* Kartu soal */}
+        <article className="surface p-5 sm:p-7">
+          <div className="flex flex-wrap items-center gap-2">
+            <span className="chip chip-brand">{soal.kategori}</span>
+            <span className="chip chip-muted">{soal.subkategori}</span>
+            {soal.tingkat_kesulitan > 0 && (
+              <span className="chip chip-muted">
+                {TINGKAT_LABEL[soal.tingkat_kesulitan] ?? 'Sedang'}
+              </span>
+            )}
           </div>
-          <div className="h-2 bg-slate-200 rounded-full overflow-hidden">
-            <div
-              className="h-full bg-blue-600 transition-all duration-300"
-              style={{ width: `${((soalSaatIni + 1) / soalList.length) * 100}%` }}
-            />
-          </div>
-        </div>
 
-        {/* Soal */}
-        <div className="bg-white rounded-xl shadow-sm border border-slate-200 p-6 mb-4">
-          <h2 className="text-lg font-semibold text-slate-800 mb-3">
-            Soal {soalSaatIni + 1}: {soal.subkategori}
-          </h2>
-          <div className="text-base text-slate-700 mb-4 whitespace-pre-line">{soal.teks_soal}</div>
+          <h1 className="mt-4 font-display text-lg font-semibold leading-relaxed text-ink sm:text-xl">
+            <span className="mr-2 text-muted-soft">{soalSaatIni + 1}.</span>
+            <span className="whitespace-pre-line">{soal.teks_soal}</span>
+          </h1>
 
-          {/* Pilihan Jawaban */}
-          <div className="space-y-3">
+          {/* Pilihan jawaban */}
+          <div className="mt-5 space-y-2.5">
             {soal.opsi.map((opsi) => {
               const isDipilih = jawabanSoalIni === opsi.kode;
-              const isBenar = showPembahasan && opsi.kode === soal.kunci;
-              const isSalah =
-                showPembahasan && isDipilih && opsi.kode !== soal.kunci;
+              const isBenar = showPembahasan && !isTKP && opsi.kode === soal.kunci;
+              const isSalah = showPembahasan && !isTKP && isDipilih && opsi.kode !== soal.kunci;
 
               return (
                 <button
@@ -334,81 +356,92 @@ export default function AttemptPage() {
                   }}
                   disabled={terkunci}
                   className={cn(
-                    'w-full text-left p-4 rounded-lg border transition-all flex items-start gap-3',
+                    'flex w-full items-start gap-3 rounded-xl border p-3.5 text-left transition-colors sm:p-4',
                     showPembahasan
                       ? isBenar
-                        ? 'bg-green-50 border-green-300 text-green-800 font-medium'
+                        ? 'border-[#c6ecdd] bg-success-soft'
                         : isSalah
-                          ? 'bg-red-50 border-red-300 text-red-800 font-semibold'
-                          : 'border-slate-200 bg-slate-50'
+                          ? 'border-[#f6cfca] bg-danger-soft'
+                          : isDipilih
+                            ? 'border-brand bg-brand-soft'
+                            : 'border-line bg-surface-muted'
                       : isDipilih
-                        ? 'bg-blue-50 border-blue-300 text-blue-900'
-                        : 'border-slate-300 hover:bg-slate-50',
+                        ? 'border-brand bg-brand-soft'
+                        : 'border-line bg-surface hover:border-line-strong hover:bg-surface-muted',
+                    terkunci && 'cursor-default',
                   )}
+                  aria-pressed={isDipilih}
                 >
-                  <span className={cn(
-                    'flex items-center justify-center w-8 h-8 rounded-full border text-sm font-semibold shrink-0',
-                    showPembahasan
-                      ? isBenar
-                        ? 'border-green-500 bg-green-100 text-green-800'
-                        : isSalah
-                          ? 'border-red-500 bg-red-100 text-red-800'
-                          : 'border-slate-300 bg-slate-50 text-slate-600'
-                      : isDipilih
-                        ? 'border-blue-500 bg-blue-100 text-blue-800'
-                        : 'border-slate-300 bg-slate-50 text-slate-600',
-                  )}>
+                  <span
+                    className={cn(
+                      'flex h-7 w-7 shrink-0 items-center justify-center rounded-lg border text-xs font-bold',
+                      showPembahasan
+                        ? isBenar
+                          ? 'border-success bg-success text-white'
+                          : isSalah
+                            ? 'border-danger bg-danger text-white'
+                            : isDipilih
+                              ? 'border-brand bg-brand text-white'
+                              : 'border-line-strong bg-white text-muted'
+                        : isDipilih
+                          ? 'border-brand bg-brand text-white'
+                          : 'border-line-strong bg-white text-muted',
+                    )}
+                  >
                     {opsi.kode}
                   </span>
-                  <span className={cn(
-                    'text-sm',
-                    showPembahasan && isBenar && 'text-green-800 font-semibold',
-                    showPembahasan && isSalah && 'text-red-800 font-semibold',
-                    !showPembahasan && 'text-slate-700',
-                  )}>
+                  <span className="flex-1 pt-0.5 text-sm leading-relaxed text-ink-soft">
                     {opsi.teks}
                     {showPembahasan && soal.kategori === 'TKP' && typeof opsi.poin === 'number' && (
-                      <span className="ml-2 inline-block rounded bg-slate-200 px-2 py-0.5 text-xs font-medium text-slate-700">
+                      <span className="ml-2 inline-block rounded-md bg-white px-1.5 py-0.5 text-[11px] font-semibold text-muted ring-1 ring-line">
                         skor {opsi.poin}
                       </span>
                     )}
                   </span>
+                  {showPembahasan && isBenar && (
+                    <span className="mt-0.5 shrink-0 text-[11px] font-semibold text-success">
+                      Benar
+                    </span>
+                  )}
+                  {isTKP && isDipilih && (
+                    <span className="mt-0.5 shrink-0 text-[11px] font-semibold text-brand">
+                      Dipilih
+                    </span>
+                  )}
                 </button>
               );
             })}
           </div>
 
           {showPembahasan && soal.kategori !== 'TKP' && (
-            <div className="mt-4 p-3 rounded-md bg-blue-50 border border-blue-100">
-              <p className="text-xs text-blue-700">
-                <span className="font-semibold">Kunci jawaban:</span> Pilihan {soal.kunci}
-              </p>
+            <div className="mt-4 rounded-xl border border-line bg-surface-muted px-4 py-3 text-xs text-muted">
+              <span className="font-semibold text-ink">Kunci jawaban:</span> Pilihan {soal.kunci}
             </div>
           )}
 
           {showPembahasan && soal.kategori === 'TKP' && (
-            <div className="mt-4 p-3 rounded-md bg-blue-50 border border-blue-100">
-              <p className="text-xs text-blue-700">
-                <span className="font-semibold">Skor jawabanmu:</span>{' '}
-                {soal.opsi.find((o) => o.kode === jawabanSoalIni)?.poin ?? 0} poin.
-                Soal TKP tidak memiliki satu kunci; setiap opsi bernilai 1–5.
-              </p>
+            <div className="mt-4 rounded-xl border border-line bg-surface-muted px-4 py-3 text-xs leading-relaxed text-muted">
+              <span className="font-semibold text-ink">Skor jawabanmu:</span>{' '}
+              {soal.opsi.find((o) => o.kode === jawabanSoalIni)?.poin ?? 0} poin. Soal TKP tidak
+              memiliki satu kunci; setiap opsi bernilai 1–5.
             </div>
           )}
-        </div>
+        </article>
 
-        {/* Info pembahasan */}
+        {/* Pembahasan */}
         {showPembahasan && soal.pembahasan && (
-          <div className="bg-purple-50 border-l-4 border-purple-500 rounded-r-lg p-4 mb-4">
+          <div className="mt-4 rounded-[18px] border border-line bg-surface p-5">
             <div className="flex items-start gap-3">
-              <div className="flex-shrink-0">
-                <span className="flex items-center justify-center w-8 h-8 rounded-full bg-purple-100 text-purple-600 text-sm font-bold">
-                  💡
-                </span>
-              </div>
-              <div className="flex-1">
-                <h3 className="text-sm font-semibold text-purple-900 mb-1">Penjelasan Jawaban</h3>
-                <p className="text-sm text-purple-800 leading-relaxed whitespace-pre-line">
+              <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-gold-soft text-gold-ink">
+                <svg className="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                  <path d="M9 18h6" />
+                  <path d="M10 21h4" />
+                  <path d="M12 3a6 6 0 0 0-3.5 10.9c.5.4.8 1 .8 1.6V16h5.4v-.5c0-.6.3-1.2.8-1.6A6 6 0 0 0 12 3Z" />
+                </svg>
+              </span>
+              <div>
+                <h2 className="font-display text-sm font-bold text-ink">Pembahasan</h2>
+                <p className="mt-1.5 whitespace-pre-line text-sm leading-relaxed text-muted">
                   {soal.pembahasan}
                 </p>
               </div>
@@ -417,52 +450,51 @@ export default function AttemptPage() {
         )}
 
         {error && (
-          <div className="mb-4 p-3 rounded-md bg-red-50 border border-red-200 text-red-700 text-sm">
+          <div className="mt-4 rounded-xl border border-[#f6cfca] bg-danger-soft px-4 py-3 text-sm text-danger">
             {error}
           </div>
         )}
 
-        {/* Action buttons */}
-        <div className="flex gap-4">
-          <button
-            onClick={() => router.push('/dashboard')}
-            className="flex-1 px-4 py-2 text-sm font-medium text-slate-600 bg-white border border-slate-300 rounded-md hover:bg-slate-50"
-          >
-            Keluar
-          </button>
+        {/* Bilah aksi */}
+        <div className="fixed inset-x-0 bottom-0 z-30 border-t border-line bg-white/95 px-4 py-3 backdrop-blur">
+          <div className="mx-auto flex max-w-3xl items-center gap-3">
+            <span className="hidden text-xs text-muted sm:block">
+              Terjawab <span className="font-semibold text-ink">{jumlahTerjawab}</span> dari{' '}
+              {soalList.length}
+            </span>
 
-          {!isTerakhir ? (
-            <button
-              onClick={() => setSoalSaatIni((prev) => prev + 1)}
-              disabled={!jawabanSoalIni && !isPembahasan}
-              className={cn(
-                'flex-1 px-4 py-2 text-sm font-medium text-white transition-all rounded-md',
-                jawabanSoalIni || isPembahasan
-                  ? 'bg-purple-600 hover:bg-purple-700'
-                  : 'bg-slate-300 cursor-not-allowed',
+            <div className="ml-auto flex flex-1 items-center gap-2 sm:flex-none">
+              <button
+                type="button"
+                onClick={() => setSoalSaatIni((prev) => Math.max(0, prev - 1))}
+                disabled={soalSaatIni === 0}
+                className="btn btn-secondary"
+              >
+                Sebelumnya
+              </button>
+
+              {!isTerakhir ? (
+                <button
+                  type="button"
+                  onClick={() => setSoalSaatIni((prev) => prev + 1)}
+                  disabled={!jawabanSoalIni && !isPembahasan}
+                  className="btn btn-primary flex-1 sm:flex-none"
+                >
+                  Lanjut
+                </button>
+              ) : (
+                <button
+                  type="button"
+                  onClick={selesaikanUjian}
+                  disabled={menyelesaikan || (!jawabanSoalIni && !isPembahasan)}
+                  className="btn btn-primary flex-1 sm:flex-none"
+                >
+                  {menyelesaikan ? 'Menghitung nilai…' : 'Selesai & lihat hasil'}
+                </button>
               )}
-            >
-              Lanjut
-            </button>
-          ) : (
-            <button
-              onClick={selesaikanUjian}
-              disabled={menyelesaikan || (!jawabanSoalIni && !isPembahasan)}
-              className={cn(
-                'flex-1 px-4 py-2 text-sm font-medium text-white rounded-md transition-all',
-                menyelesaikan || (!jawabanSoalIni && !isPembahasan)
-                  ? 'bg-slate-300 cursor-not-allowed'
-                  : 'bg-green-600 hover:bg-green-700',
-              )}
-            >
-              {menyelesaikan ? 'Menghitung nilai...' : 'Selesai & Lihat Hasil'}
-            </button>
-          )}
+            </div>
+          </div>
         </div>
-
-        <p className="mt-3 text-xs text-slate-500 text-center">
-          Terjawab: {Object.keys(jawabanUser).length} dari {soalList.length} soal
-        </p>
       </main>
     </div>
   );

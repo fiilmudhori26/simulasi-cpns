@@ -2,7 +2,6 @@
 
 import { useState } from 'react';
 import { useParams, useRouter } from 'next/navigation';
-import { cn } from '@/lib/utils';
 
 export default function ResetKataSandiPage() {
   const params = useParams();
@@ -35,23 +34,20 @@ export default function ResetKataSandiPage() {
       const response = await fetch('/api/auth/reset-password', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          token,
-          newPassword: password
-        }),
+        body: JSON.stringify({ token, newPassword: password }),
       });
 
       const data = await response.json();
 
       if (response.ok) {
-        setMessage({ text: 'Kata sandi berhasil diubah. Anda akan dialipasikan...', type: 'success' });
+        setMessage({ text: 'Kata sandi berhasil diubah. Mengalihkan ke halaman masuk…', type: 'success' });
         setTimeout(() => {
           router.push('/masuk');
         }, 2000);
       } else {
         setMessage({ text: data.message || 'Gagal mengubah kata sandi.', type: 'error' });
       }
-    } catch (error) {
+    } catch {
       setMessage({ text: 'Terjadi kesalahan. Silakan coba lagi.', type: 'error' });
     } finally {
       setLoading(false);
@@ -59,74 +55,74 @@ export default function ResetKataSandiPage() {
   }
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-slate-50 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-md w-full space-y-6 bg-white p-8 rounded-xl shadow-sm border border-slate-200">
-        <div>
-          <h2 className="text-2xl font-bold text-slate-800">Atur Ulang Kata Sandi</h2>
-          <p className="mt-1 text-slate-600">
-            Masukkan kata sandi baru Anda.
+    <div className="flex min-h-screen items-center justify-center bg-canvas px-4 py-12 sm:px-6">
+      <div className="w-full max-w-md">
+        <div className="surface p-6 sm:p-8">
+          <p className="eyebrow">Keamanan akun</p>
+          <h1 className="mt-2 font-display text-2xl font-bold text-ink">Atur ulang kata sandi</h1>
+          <p className="mt-1.5 text-sm leading-relaxed text-muted">
+            Buat kata sandi baru minimal 8 karakter.
           </p>
-        </div>
 
-        {message && message.text && (
-          <div
-            className={cn(
-              'px-4 py-3 rounded-md text-sm',
-              message.type === 'error'
-                ? 'bg-red-50 border border-red-200 text-red-700'
-                : 'bg-green-50 border border-green-200 text-green-700'
-            )}
-          >
-            {message.text}
-          </div>
-        )}
+          {message && (
+            <div
+              className={
+                message.type === 'error'
+                  ? 'mt-4 rounded-xl border border-[#f6cfca] bg-danger-soft px-4 py-3 text-sm text-danger'
+                  : 'mt-4 rounded-xl border border-[#c6ecdd] bg-success-soft px-4 py-3 text-sm text-success'
+              }
+            >
+              {message.text}
+            </div>
+          )}
 
-        <form onSubmit={handleSubmit} className="mt-6 space-y-4">
-          <div>
-            <label className="block text-sm font-medium text-slate-700">Kata Sandi Baru</label>
-            <input
-              className={cn(
-                'mt-1 block w-full rounded-md border border-slate-300 px-3 py-2 text-slate-900 shadow-sm focus:ring-blue-500 focus:border-blue-500',
-              )}
-              type="password"
-              required
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              placeholder="Masukkan kata sandi baru"
-            />
-          </div>
+          <form onSubmit={handleSubmit} className="mt-6 space-y-4">
+            <div>
+              <label htmlFor="password" className="field-label">
+                Kata sandi baru
+              </label>
+              <input
+                id="password"
+                className="field"
+                type="password"
+                required
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                placeholder="Masukkan kata sandi baru"
+                autoComplete="new-password"
+              />
+            </div>
 
-          <div>
-            <label className="block text-sm font-medium text-slate-700">Konfirmasi Kata Sandi</label>
-            <input
-              className={cn(
-                'mt-1 block w-full rounded-md border border-slate-300 px-3 py-2 text-slate-900 shadow-sm focus:ring-blue-500 focus:border-blue-500',
-              )}
-              type="password"
-              required
-              value={confirmPassword}
-              onChange={(e) => setConfirmPassword(e.target.value)}
-              placeholder="Ulangi kata sandi baru"
-            />
-          </div>
+            <div>
+              <label htmlFor="konfirmasi" className="field-label">
+                Konfirmasi kata sandi
+              </label>
+              <input
+                id="konfirmasi"
+                className="field"
+                type="password"
+                required
+                value={confirmPassword}
+                onChange={(e) => setConfirmPassword(e.target.value)}
+                placeholder="Ulangi kata sandi baru"
+                autoComplete="new-password"
+              />
+            </div>
 
-          <button
-            disabled={loading}
-            className={cn(
-              'w-full flex justify-center py-2.5 px-4 rounded-md text-sm font-semibold text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 disabled:opacity-50 disabled:cursor-not-allowed',
-            )}
-          >
-            {loading ? 'Mengubah...' : 'Atur Ulang Kata Sandi'}
-          </button>
-        </form>
+            <button disabled={loading} className="btn btn-primary btn-block">
+              {loading ? 'Mengubah…' : 'Atur ulang kata sandi'}
+            </button>
+          </form>
 
-        <div className="text-center text-sm text-slate-600">
-          <a
-            href="/masuk"
-            className="font-semibold text-blue-600 hover:text-blue-500"
-          >
-            Kembali ke Masuk
-          </a>
+          <p className="mt-5 text-center text-sm text-muted">
+            <button
+              type="button"
+              onClick={() => router.push('/masuk')}
+              className="font-semibold text-brand hover:text-brand-600"
+            >
+              Kembali ke halaman masuk
+            </button>
+          </p>
         </div>
       </div>
     </div>

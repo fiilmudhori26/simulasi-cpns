@@ -18,7 +18,11 @@ export default function Home() {
   }, [router]);
 
   if (checking) {
-    return <div className="min-h-screen flex items-center justify-center">Memuat...</div>;
+    return (
+      <div className="flex min-h-screen items-center justify-center">
+        <span className="text-sm text-muted">Memuat…</span>
+      </div>
+    );
   }
 
   return null;
