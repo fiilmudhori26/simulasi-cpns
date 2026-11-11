@@ -128,7 +128,7 @@ export default function MulaiUjianPage() {
           </div>
           {isPembahasan && (
             <p className="mt-2 text-xs text-slate-500">
-              Mode pembahasan: Soal langsung ditunjukkan dengan jawaban dan penjelasan.
+              Mode pembahasan: Pilih jawabanmu, lalu lihat kunci dan penjelasan.
             </p>
           )}
         </div>
@@ -207,7 +207,7 @@ export default function MulaiUjianPage() {
           {isPembahasan && (
             <div className="bg-purple-50 border border-purple-100 rounded-lg p-4 text-sm text-purple-800 mb-4">
               <p className="font-semibold">Mode Pembahasan Aktif</p>
-              <p className="mt-1">Soal akan ditunjukkan dengan jawaban benar dan penjelasan.</p>
+              <p className="mt-1">Pilih jawabanmu, lalu jawaban benar dan penjelasan akan ditampilkan.</p>
             </div>
           )}
 

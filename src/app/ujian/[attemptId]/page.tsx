@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState, useRef, useCallback } from 'react';
+import { useEffect, useState, useCallback } from 'react';
 import { useParams, useRouter } from 'next/navigation';
 import { getRandomSoal, Soal } from '@/data/soal';
 import { cn } from '@/lib/utils';
@@ -34,7 +34,6 @@ export default function AttemptPage() {
   const [soalSaatIni, setSoalSaatIni] = useState(0);
   const [jawabanUser, setJawabanUser] = useState<Record<string, string>>({});
   const [showHasil, setShowHasil] = useState(false);
-  const hasAutoAdvanced = useRef(false);
 
   // Redirect if no nama
   useEffect(() => {
@@ -72,39 +71,7 @@ export default function AttemptPage() {
 
     setSoalList(soal);
     setLoading(false);
-    hasAutoAdvanced.current = false;
   }, [attemptId, router]);
-
-  // Auto jawab untuk mode pembahasan - useEffect #2
-  useEffect(() => {
-    if (attempt?.ujianMode === 'pembahasan' && !showHasil && soalList.length > 0) {
-      const soal = soalList[soalSaatIni];
-      if (soal && !jawabanUser[soal.id]) {
-        const timer = setTimeout(() => {
-          setJawabanUser((prev) => ({ ...prev, [soal.id]: soal.kunci }));
-          hasAutoAdvanced.current = true;
-        }, 500);
-        return () => clearTimeout(timer);
-      }
-    }
-  }, [attempt?.ujianMode, showHasil, soalList, soalSaatIni, jawabanUser, router]);
-
-  // Auto-advance untuk mode pembahasan - useEffect #3
-  useEffect(() => {
-    if (attempt?.ujianMode === 'pembahasan' && jawabanUser[soalList[soalSaatIni]?.id] && !showHasil) {
-      const soal = soalList[soalSaatIni];
-      if (soal) {
-        const timer = setTimeout(() => {
-          if (soalSaatIni < soalList.length - 1) {
-            setSoalSaatIni((prev) => prev + 1);
-          } else {
-            setShowHasil(true);
-          }
-        }, 2000); // Tampilkan pembahasan 2 detik sebelum lanjut
-        return () => clearTimeout(timer);
-      }
-    }
-  }, [attempt?.ujianMode, jawabanUser, soalList, soalSaatIni, showHasil]);
 
   const handleLanjut = useCallback(() => {
     if (soalSaatIni < soalList.length - 1) {
@@ -185,7 +152,7 @@ export default function AttemptPage() {
               </svg>
               <span className="text-sm font-medium text-purple-800">Mode Pembahasan Aktif</span>
             </div>
-            <p className="mt-1 text-xs text-purple-700">Soal akan ditunjukkan dengan jawaban dan penjelasan otomatis</p>
+            <p className="mt-1 text-xs text-purple-700">Pilih jawabanmu untuk melihat kunci dan penjelasan</p>
           </div>
         )}
 
