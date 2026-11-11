@@ -17,7 +17,7 @@ export interface Statistik {
   };
 }
 
-const STATISTIK_DEFAULT: Statistik = {
+export const STATISTIK_DEFAULT: Statistik = {
   besar: 0,
   benar: 0,
   salah: 0,
