@@ -11,10 +11,14 @@ interface HasilUjian {
   mulaiAt: string;
   selesaiAt: string;
   soal: number;
+  jumlahTWK?: number;
+  jumlahTIU?: number;
+  jumlahTKP?: number;
   skorTWK: number;
   skorTIU: number;
   skorTKP: number;
   skorTotal: number;
+  jumlahBenar?: number;
   jawaban: Record<string, string>;
   kategori?: 'TWK' | 'TIU' | 'TKP';
 }
@@ -43,8 +47,11 @@ export default function HasilPage() {
 
       // Simpan statistik terbaru
       const totalSoal = parsedHasil.soal;
-      const benar = parsedHasil.skorTotal;
-      const persen = Math.round((benar / totalSoal) * 100);
+      const benar =
+        typeof parsedHasil.jumlahBenar === 'number'
+          ? parsedHasil.jumlahBenar
+          : parsedHasil.skorTotal;
+      const persen = totalSoal > 0 ? Math.round((benar / totalSoal) * 100) : 0;
 
       // Update statistik global
       const statLama = JSON.parse(localStorage.getItem('statistik_cpns') || '{}');
@@ -89,9 +96,15 @@ export default function HasilPage() {
     );
   }
 
-  // Hitung persentase
-  const maxSkor = hasil.soal;
-  const persentase = Math.round((hasil.skorTotal / maxSkor) * 100);
+  // Hitung persentase (skor maksimal: 5 poin per soal)
+  const maxTWK = hasil.jumlahTWK != null ? hasil.jumlahTWK * 5 : hasil.skorTWK;
+  const maxTIU = hasil.jumlahTIU != null ? hasil.jumlahTIU * 5 : hasil.skorTIU;
+  const maxTKP = hasil.jumlahTKP != null ? hasil.jumlahTKP * 5 : hasil.skorTKP;
+  const maxSkor =
+    hasil.jumlahTWK != null || hasil.jumlahTIU != null || hasil.jumlahTKP != null
+      ? maxTWK + maxTIU + maxTKP
+      : hasil.soal * 5;
+  const persentase = maxSkor > 0 ? Math.round((hasil.skorTotal / maxSkor) * 100) : 0;
 
   // Tentukan status
   const status = persentase >= 65 ? 'LULUS' : 'TIDAK LULUS';
@@ -111,15 +124,15 @@ export default function HasilPage() {
         <div className="grid grid-cols-3 gap-4 mb-6">
           <div className="bg-white rounded-xl p-4 text-center border border-slate-200">
             <p className="text-sm text-slate-600 mb-1">TWK</p>
-            <p className="text-2xl font-bold text-blue-600">{hasil.skorTWK}/{hasil.skorTWK + Math.max(0, 10 - hasil.skorTWK)}</p>
+            <p className="text-2xl font-bold text-blue-600">{hasil.skorTWK}/{maxTWK}</p>
           </div>
           <div className="bg-white rounded-xl p-4 text-center border border-slate-200">
             <p className="text-sm text-slate-600 mb-1">TIU</p>
-            <p className="text-2xl font-bold text-green-600">{hasil.skorTIU}/{hasil.skorTIU + Math.max(0, 15 - hasil.skorTIU)}</p>
+            <p className="text-2xl font-bold text-green-600">{hasil.skorTIU}/{maxTIU}</p>
           </div>
           <div className="bg-white rounded-xl p-4 text-center border border-slate-200">
             <p className="text-sm text-slate-600 mb-1">TKP</p>
-            <p className="text-2xl font-bold text-purple-600">{hasil.skorTKP}/{hasil.skorTKP + Math.max(0, 15 - hasil.skorTKP)}</p>
+            <p className="text-2xl font-bold text-purple-600">{hasil.skorTKP}/{maxTKP}</p>
           </div>
         </div>
 
@@ -135,6 +148,16 @@ export default function HasilPage() {
               <span className="text-slate-600">Jumlah Soal:</span>
               <span className="font-medium text-slate-800">{hasil.soal}</span>
             </div>
+            <div className="flex justify-between">
+              <span className="text-slate-600">Skor Total:</span>
+              <span className="font-medium text-slate-800">{hasil.skorTotal} / {maxSkor}</span>
+            </div>
+            {typeof hasil.jumlahBenar === 'number' && (
+              <div className="flex justify-between">
+                <span className="text-slate-600">Jawaban Benar:</span>
+                <span className="font-medium text-slate-800">{hasil.jumlahBenar} soal</span>
+              </div>
+            )}
             <div className="flex justify-between">
               <span className="text-slate-600">Waktu Penyelesian:</span>
               <span className="font-medium text-slate-800">
